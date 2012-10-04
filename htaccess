@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /~rpage/afd/
+
+# Object
+RewriteRule ^id/(.*)   index.php?id=$1 [NC,L]
+
+# Author name
+RewriteRule ^author/(.*)   index.php?author=$1 [NC,L]
+
+# Publication outlet
+RewriteRule ^publication_outlet/(.*)   index.php?publication_outlet=$1 [NC,L]

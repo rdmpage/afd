@@ -1,0 +1,13 @@
+body 
+{ 
+	font-family: sans-serif;
+	font-size: 0.9em;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* WebKit */	
+input[type="search"] 
+{ 
+	-webkit-appearance: textfield; 
+}

@@ -1,0 +1,43 @@
+#header 
+{
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd'); /* for IE */
+	background: #ddd;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+	background: -moz-linear-gradient(top,  #fff,  #ddd);
+	
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:32px;
+	width:600px;	
+	
+	font-family:sans-serif;
+}
+
+#page_container
+{
+	position:absolute;
+	top:32px;
+	height:800px;
+	width:600px;
+	overflow:auto;
+	background-color:#f3f3f3;
+	padding-bottom:10px;
+}
+
+#page_image
+{
+	position:absolute;
+	left:60px;
+	width:480px;
+	border:1px solid rgb(192,192,192);
+	margin-top:10px;
+}
+
+#all_pages
+{
+	position:absolute;
+	left:20px;
+	width:540px;
+	margin-top:10px;
+}

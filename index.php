@@ -302,6 +302,22 @@ function default_display()
 	</tr>
 	</table>';	
 	
+	echo '<h3>Downloads</h3>';
+	echo '<p>You can get a tab-delimited download of the mapping between publications and identifiers. The list comprises the UUID for the publication and the corresponding identifier:</p>';
+	echo '<pre style="border:1px solid rgb(228,228,228);padding:4px;">
+d4d66f5e-5328-4dc8-8a44-f55bbf0c3f86	10.1002/iroh.19250140102
+bf7562b7-695e-4168-b3f1-9c80d2315832	10.1002/iroh.19650500109
+               .                                  .
+               .                                  .
+               .                                  .
+</pre>';
+	echo '<ul>';
+	echo '<li><a href="downloads/doi.txt">Publications to DOI</a></li>';
+	echo '<li><a href="downloads/biostor.txt">Publications to Biostor</a></li>';
+	echo '</ul>';
+
+	
+	
 	echo '<h3>About</h3>';
 	echo '<p>This is a project by <a href="http://iphylo.blogspot.com/">Rod Page</a>.</p>';
 	
@@ -1121,52 +1137,128 @@ function display_search($query)
 	
 	$query = stripcslashes(trim($query));
 	
-	$resp = $couch->send("GET", "/" . $config['couchdb'] . "/_design/taxon/_view/nameComplete?key=" . urlencode('"' . $query . '"'));
-	$r = json_decode($resp);
-	
-	//echo $query;
-	//echo $resp;
-	
-	// If one hit bounces us straight there
-	if (count($r->rows) == 1)
+	if (0)
 	{
-		header('Location: ' . $config['web_root'] . 'id/' . $r->rows[0]->value . "\n\n");
-		exit(0);
-	}
-	
-	// Either nothing or > 1 hit
-	header("Content-type: text/html; charset=utf-8\n\n");
-	echo html_html_open();
-	echo html_head_open();
-	echo html_title('Search - ' . $config['site_name']);
-	echo html_include_css('css/main.css');
-	echo html_head_close();
-	echo html_body_open();	
-
-	//----------------------------------------------------------------------------------------------
-	// Home
-	echo '<span><a href="' . $config['web_root']	 . '">' . $config['site_name'] . '</a></span>';	
-	echo html_search_box();
+		// taxon name search
+		$resp = $couch->send("GET", "/" . $config['couchdb'] . "/_design/taxon/_view/nameComplete?key=" . urlencode('"' . $query . '"'));
+		$r = json_decode($resp);
 		
-	//----------------------------------------------------------------------------------------------
-	if (count($r->rows) == 0)
-	{
-		echo '<p>Nothing found for <b>' . $query . '</b></p>';
+		//echo $query;
+		//echo $resp;
+		
+		// If one hit bounces us straight there
+		if (count($r->rows) == 1)
+		{
+			header('Location: ' . $config['web_root'] . 'id/' . $r->rows[0]->value . "\n\n");
+			exit(0);
+		}
+		
+		// Either nothing or > 1 hit
+		header("Content-type: text/html; charset=utf-8\n\n");
+		echo html_html_open();
+		echo html_head_open();
+		echo html_title('Search - ' . $config['site_name']);
+		echo html_include_css('css/main.css');
+		echo html_head_close();
+		echo html_body_open();	
+	
+		//----------------------------------------------------------------------------------------------
+		// Home
+		echo '<span><a href="' . $config['web_root']	 . '">' . $config['site_name'] . '</a></span>';	
+		echo html_search_box();
+			
+		//----------------------------------------------------------------------------------------------
+		if (count($r->rows) == 0)
+		{
+			echo '<p>Nothing found for <b>' . $query . '</b></p>';
+		}
+		else
+		{
+			echo '<p>' . count($r->rows) . ' records match "' . $query . '":</p>';
+			echo '<ol>';
+			
+			foreach ($r->rows as $row)
+			{
+				echo '<li><a href="id/' . $row->id . '">' . $row->key . '</a></li>';
+			}
+			echo '</ol>';
+		}
+	
+		echo html_body_close(false);
+		echo html_html_close();	
 	}
 	else
 	{
-		echo '<p>' . count($r->rows) . ' records match "' . $query . '":</p>';
-		echo '<ol>';
+		// Cloudant full text search
+		$q = 'title:' . $query;
+		$q = str_replace(' ', ' title:', $q);
+		$q = explode(' ', $q);
+		$q = join(" AND ", $q);
 		
-		foreach ($r->rows as $row)
+		$url = '/_design/lookup/_search/all?q=' . urlencode($q) . '&include_docs=true';
+		
+		//echo $url;
+		
+		$resp = $couch->send("GET", "/" . $config['couchdb'] . "/" . $url);
+		
+		//echo $resp;
+		$obj = json_decode($resp);
+		
+		
+		//print_r($obj);
+		
+		//echo '<h1>' . $query . '</h1>';
+		
+		
+		header("Content-type: text/html; charset=utf-8\n\n");
+		echo html_html_open();
+		echo html_head_open();
+		echo html_title('Search - ' . $config['site_name']);
+		echo html_include_css('css/main.css');
+		echo html_head_close();
+		echo html_body_open();	
+	
+		//----------------------------------------------------------------------------------------------
+		// Home
+		echo '<span><a href="' . $config['web_root']	 . '">' . $config['site_name'] . '</a></span>';	
+		echo html_search_box($query);
+		
+		
+		echo '<ul>';
+		foreach ($obj->rows as $row)
 		{
-			echo '<li><a href="id/' . $row->id . '">' . $row->key . '</a></li>';
-		}
-		echo '</ol>';
+			/*
+			echo '<div>';
+			echo $row->score . ' ';
+			echo '<b>' . $row->doc->title . '</b>';
+			
+			if (isset($row->doc->thumbnail))
+			{
+				echo '<br/><img src="' . $row->doc->thumbnail . '" height="100"/>';
+			}
+			echo '</div>';
+			*/
+			
+			// list view
+			$resp = $couch->send("GET", "/" . $config['couchdb'] . "/" . $row->id);
+			$publication = json_decode($resp);
+			if (isset($publication->error))
+			{
+				// We don't have this reference
+			}
+			else
+			{
+				echo '<li style="list-style-type:none;">' . display_one_publication($publication) . '</li>';
+			}
+			
+		}	
+	
+		echo '</ul>';
+		
+		echo html_body_close(false);
+		echo html_html_close();	
+		
 	}
-
-	echo html_body_close(false);
-	echo html_html_close();	
 }
 
 //--------------------------------------------------------------------------------------------------

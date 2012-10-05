@@ -1,7 +1,7 @@
 <?php
 
 $options['host'] = "localhost";
-$options['host'] = "rdmpage:peacrab@rdmpage.cloudant.com";
+$options['host'] = "rdmpage.cloudant.com";
 $options['port'] = 5984;
 
 require_once (dirname(__FILE__) . '/config.inc.php');

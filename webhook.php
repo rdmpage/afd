@@ -6,7 +6,6 @@ require_once (dirname(__FILE__) . '/config.inc.php');
 require_once (dirname(__FILE__) . '/couchsimple.php');
 require_once (dirname(__FILE__) . '/lib.php');
 
-
 // Webhook requires POST
 if ($_SERVER['REQUEST_METHOD'] != 'POST')
 {
@@ -17,33 +16,27 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST')
 // Do we have data?
 $data = $HTTP_RAW_POST_DATA;
 
+// If no data bail then with 400
 if ($data == '')
 {
 	header('HTTP/1.1 400 Bad Request');
 	header('Status: 400 Bad Request');
 	$_SERVER['REDIRECT_STATUS'] = 400;
 	echo 'Bad Request';	
-	exit();
 }
 
-//echo 'ok';
-
-$obj = json_decode($data);
-
-//echo $obj->_id;
-
-//exit();
 // Are we going to do any authentication checks...?
 // Could do things like HMAC hash, see 
 // http://code.google.com/p/bioguid/source/browse/trunk/www/google/index.php 
 
 // OK, we have data
+$json = stripcslashes($data);
+$obj = json_decode($json);
+$id = $obj->_id;
 
 // Do we have this object?
-$resp = $couch->send("GET", "/" . $config['couchdb'] . "/" . $obj->_id);	
+$resp = $couch->send("GET", "/" . $config['couchdb'] . "/" . $id);	
 $r = json_decode($resp);
-
-//echo $resp;
 
 // If not then bail with 404 
 if (isset($r->error))
@@ -51,15 +44,15 @@ if (isset($r->error))
 	header('HTTP/1.1 404 Not Found');
 	header('Status: 404 Not Found');
 	$_SERVER['REDIRECT_STATUS'] = 404;
-	echo 'Object with id="' . $obj->id . '" not found';		
+	echo 'Object with id="' . $id . '" not found';		
 }
 
 // OK, update object with new data
 
 // Decode data (note the vital step of stripping slashes)
-$json = stripcslashes($data);
-$obj = json_decode($json);
-
+//$json = stripcslashes($data);
+$obj = json_decode($data);
+//
 //echo $json;
 
 // Update values
@@ -93,7 +86,6 @@ foreach ($obj->identifiers as $key => $value)
 	}
 }
 
-
 // If we have BioStor identifier then load more details
 if (isset($obj->identifiers->biostor))
 {
@@ -107,14 +99,11 @@ if (isset($obj->identifiers->biostor))
 	
 	$biostor = json_decode($json);
 	
-	
 	if (isset($biostor->thumbnails))
 	{
-		// thumbnail is too big to send :(
 		//$r->thumbnail = $biostor->thumbnails[0];
 		$r->identifiers->bhl = $biostor->bhl_pages[0];
 	}
-	
 	
 	$r->pageIdentifiers = $biostor->bhl_pages;
 	
@@ -167,7 +156,7 @@ if (isset($obj->authors))
 
 //echo json_encode($r);
 
-$resp = $couch->send("PUT", "/" . $config['couchdb'] . "/" . $obj->_id, json_encode($r));
+$resp = $couch->send("PUT", "/" . $config['couchdb'] . "/" . $id, json_encode($r));
 
 echo $resp;
 

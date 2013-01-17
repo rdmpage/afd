@@ -99,9 +99,18 @@ if (isset($obj->identifiers->biostor))
 	
 	$biostor = json_decode($json);
 	
+	// Get identifiers
+	foreach ($biostor->identifiers as $key => $value)
+	{
+		if (!isset($r->identifiers->$key))
+		{
+			$r->identifiers->$key = $value;
+		}
+	}	
+	
 	if (isset($biostor->thumbnails))
 	{
-		//$r->thumbnail = $biostor->thumbnails[0];
+		$r->thumbnail = $biostor->thumbnails[0];
 		$r->identifiers->bhl = $biostor->bhl_pages[0];
 	}
 	

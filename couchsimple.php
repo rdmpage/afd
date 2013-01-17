@@ -1,8 +1,30 @@
 <?php
 
-$options['host'] = "localhost";
-$options['host'] = "rdmpage.cloudant.com";
-$options['port'] = 5984;
+$options = array();
+
+// local
+if (0)
+{
+	$options['host'] = "localhost";
+	$options['port'] = 5984;
+}
+
+
+if (1)
+{
+	// cloudant
+	$options['host'] = "rdmpage:peacrab@rdmpage.cloudant.com";
+	$options['proxy'] = 'wwwcache.gla.ac.uk:8080'; // externally hosted
+}
+
+if (0)
+{
+	// bionames
+	$options['host'] = "rdmpage:peacrab@bionames.org";
+	$options['port'] = 5984;
+	//$options['proxy'] = 'wwwcache.gla.ac.uk:8080'; 
+}
+
 
 require_once (dirname(__FILE__) . '/config.inc.php');
 
@@ -30,30 +52,32 @@ class CouchSimple
 		
 		if ($this->host != 'localhost')
 		{
-			$url = $prefix . $this->host . $url;
+			$url = $prefix . $this->host . ':' . $this->port . $url;
 		}
 		else
 		{
 			$url = $prefix . $this->host . ':' . $this->port . $url;
 		}
 		
+		//echo $url;
+		
 		curl_setopt ($ch, CURLOPT_URL, $url); 
 		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); 
 		
 		curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		if ($this->host != 'localhost')
-		{
-    		curl_setopt ($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
-    	}
 		
-		if ($this->host != 'localhost')
+		// Set HTTP headers
+		$headers = array();
+		$headers[] = 'Content-type: application/json'; // we are sending JSON
+		
+		// Override Expect: 100-continue header (may cause problems with HTTP proxies
+		// http://the-stickman.com/web-development/php-and-curl-disabling-100-continue-header/
+		$headers[] = 'Expect:'; 
+    	curl_setopt ($ch, CURLOPT_HTTPHEADER, $headers);
+				
+		if (isset($this->proxy))
 		{
-			curl_setopt($ch, CURLOPT_PROXY, 'wwwcache.gla.ac.uk:8080');
-		}
-		else
-		{
-			curl_setopt($ch, CURLOPT_PROXY, '');
+			curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
 		}
 		switch ($method) {
 		  case 'POST':
@@ -74,6 +98,8 @@ class CouchSimple
 		}
    		$response = curl_exec($ch);
     	$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    	
+    	//echo $response;
     	
 		if (curl_errno ($ch) != 0 )
 		{

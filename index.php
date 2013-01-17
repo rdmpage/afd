@@ -1137,7 +1137,7 @@ function display_search($query)
 	
 	$query = stripcslashes(trim($query));
 	
-	if (0)
+	if (1)
 	{
 		// taxon name search
 		$resp = $couch->send("GET", "/" . $config['couchdb'] . "/_design/taxon/_view/nameComplete?key=" . urlencode('"' . $query . '"'));

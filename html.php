@@ -194,6 +194,8 @@ function html_search_box($query = '')
 {
 	global $config;
 	
+	$html = '';
+	
 	echo '
 		<div style="float:right">
 		<form method="get" action="index.php">

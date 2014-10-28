@@ -20,6 +20,7 @@ if (isset($obj->thumbnail))
 	{
 		//print_r($m);
 		header("Content-type: " . $m['mime']);
+		header("Cache-control: max-age=3600");
 		$image = preg_replace('/^data:(?<mime>image\/.*);base64/', '', $image);
 		echo base64_decode($image);
 	}

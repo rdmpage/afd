@@ -353,6 +353,7 @@ bf7562b7-695e-4168-b3f1-9c80d2315832	10.1002/iroh.19650500109
 //--------------------------------------------------------------------------------------------------
 function display_publication_identifiers ($publication)
 {
+	$html = '';
 	// External links
 	if (isset($publication->identifiers))
 	{
@@ -391,6 +392,7 @@ function display_publication_identifiers ($publication)
 // Display one publication (may be part of a larger list)
 function display_one_publication ($publication)
 {
+	$html = '';
 	$html .= '<div style="position:relative;padding:4px;min-height:100px;">';
 	
 	if (isset($publication->thumbnail))
@@ -1010,15 +1012,21 @@ function parent(id)
 	echo '<ul>';
 	foreach ($names->rows as $row)
 	{
-		if ($row->value->originalCombination)
+		if (isset($row->value->originalCombination))
 		{
-			echo '<li>'; // style="background-color:yellow;">';
+			if ($row->value->originalCombination)
+			{
+				echo '<li>'; // style="background-color:yellow;">';
+			}
+			else
+			{
+				echo '<li>';
+			}
 		}
 		else
 		{
 			echo '<li>';
 		}
-		
 		echo $row->value->nameCompleteHtml;
 		
 		if (isset($row->value->authorship))

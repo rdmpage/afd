@@ -13,8 +13,9 @@ if (0)
 if (1)
 {
 	// cloudant
-	$options['host'] = "rdmpage:peacrab@rdmpage.cloudant.com";
+	$options['host'] = "rdmpage:peacrab280398@rdmpage.cloudant.com";
 	$options['proxy'] = 'wwwcache.gla.ac.uk:8080'; // externally hosted
+	$options['port'] = 5984;
 }
 
 if (0)

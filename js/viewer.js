@@ -16,7 +16,7 @@ function load_page()
     newImg.onload = onLoad;
 
 	// Set the source to a really big image
-	newImg.src = 'http://biostor.org/bhl_image.php?PageID=' + pages[pageNumber];
+	newImg.src = 'http://biostor.org/page/image/' + pages[pageNumber] + '-normal.jpg';  
 }
 
 function previous()
@@ -27,7 +27,7 @@ function previous()
 		$('#page_counter').html(pageNumber+1+'/'+ pages.length);
 		if (mode == 0)
 		{
-			$('#page_image').attr("src", 'http://biostor.org/bhl_image.php?PageID=' + pages[pageNumber] + '&thumbnail');
+			$('#page_image').attr("src", 'http://biostor.org/page/image/' + pages[pageNumber] + '-small.jpg');
 			
 			load_page();
 		}
@@ -46,7 +46,7 @@ function next()
 		
 		if (mode == 0)
 		{
-			$('#page_image').attr("src", 'http://biostor.org/bhl_image.php?PageID=' + pages[pageNumber] + '&thumbnail');
+			$('#page_image').attr("src", 'http://biostor.org/page/image/' + pages[pageNumber] + '-small.jpg');
 			
 			load_page();
 		}
@@ -72,7 +72,7 @@ function show_page(page)
 		pageNumber = page;
 	}
 	$('#page_counter').html(pageNumber+1+'/'+ pages.length);
-	$('#page_image').attr("src", 'http://biostor.org/bhl_image.php?PageID=' + pages[pageNumber] + '&thumbnail');
+	$('#page_image').attr("src", 'http://biostor.org/page/image/' + pages[pageNumber] + '-small.jpg');
 	
 	load_page();
 }
@@ -92,7 +92,7 @@ function show_all_pages()
 	var html = '';
 	for (var i=0;i<n;i++)
 	{
-		 html += '<img style="margin:10px;border:1px solid rgb(192,192,192);" onclick="show_page(' + i + ');" src="http://biostor.org/bhl_image.php?PageID=' + pages[i] + '&thumbnail"/>';		 
+		 html += '<img style="margin:10px;border:1px solid rgb(192,192,192);" onclick="show_page(' + i + ');" src="http://biostor.org/page/image/' + pages[i] + '-small.jpg"/>';		 
 	}
 	$('#all_pages').html(html);
 	$('#all_pages').show();

@@ -16,7 +16,7 @@ date_default_timezone_set('UTC');
 
 // Server-------------------------------------------------------------------------------------------
 $config['web_server']	= 'http://localhost'; 
-$config['web_server']	= 'http://iphylo.org'; 
+//$config['web_server']	= 'http://iphylo.org'; 
 $config['site_name']	= 'Australian Faunal Directory on CouchDB';
 
 // Files--------------------------------------------------------------------------------------------

@@ -3,14 +3,14 @@
 $options = array();
 
 // local
-if (0)
+if (1)
 {
 	$options['host'] = "localhost";
 	$options['port'] = 5984;
 }
 
 
-if (1)
+if (0)
 {
 	// cloudant
 	$options['host'] = "rdmpage:peacrab280398@rdmpage.cloudant.com";

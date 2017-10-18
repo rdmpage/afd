@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>baseURL</key>
-	<string>http://bie.ala.org.au/species/urn:lsid:biodiversity.org.au:afd.taxon:256c2521-2bdc-4fc3-9f97-5369f702f574</string>
+	<string>http://bie.ala.org.au/species/urn:lsid:biodiversity.org.au:afd.taxon:93c99e5d-f32c-4773-9473-79ca267a53a3</string>
 	<key>followRedirect</key>
 	<false/>
 	<key>handleJSONPCallbacks</key>

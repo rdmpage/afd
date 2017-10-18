@@ -1,0 +1,24 @@
+{
+  "_id": "b04fcc4c-4d3a-4ac5-bc6c-e2ce0275ac9f",
+  "_rev": "1-fabb769878241fee836bfe0e3e1429f5",
+  "authors": [
+    {
+      "surname": "Marks",
+      "forename": "E N"
+    }
+  ],
+  "type": "Journal Article",
+  "title": "Northern records of the genus Culiseta Felt in Australia with the description of a new species (Diptera: Culicidae)",
+  "year": "1968",
+  "id": "b04fcc4c-4d3a-4ac5-bc6c-e2ce0275ac9f",
+  "publication_outlet": "Journal of The Australian Entomological Society",
+  "volume": "7",
+  "pages": "43-56",
+  "urls": [
+    "http://dx.doi.org/10.1111/j.1440-6055.1968.tb00700.x"
+  ],
+  "identifiers": {
+    "doi": "10.1111/j.1440-6055.1968.tb00700.x"
+  },
+  "docType": "publication"
+}

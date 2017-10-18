@@ -31,8 +31,8 @@ $config['couchdb']		= 'afd';
 $config['proxy_name'] 	= '';
 $config['proxy_port'] 	= '';
 
-$config['proxy_name'] 	= 'wwwcache.gla.ac.uk';
-$config['proxy_port'] 	= '8080';
+//$config['proxy_name'] 	= 'wwwcache.gla.ac.uk';
+//$config['proxy_port'] 	= '8080';
 
 
 $config['use_disqus'] 	= true;

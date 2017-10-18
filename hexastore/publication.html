@@ -1,0 +1,263 @@
+<html>
+	<head>
+		<title>AFD JSON to n-triples</title>
+		<meta charset="UTF-8"/>
+		<script src="jquery.js"></script>
+		<script src="jsonld.js"></script>
+		<script src="viz.js"></script>
+		<!-- stuff below needs to go into CouchDB views -->
+		<script src="shared.js"></script>
+		<script src="language.js"></script>
+		<style>
+		td { border: 1px solid red; }
+		</style>
+	</head>
+<body>
+
+<h1>AFD JSON to n-triples</h1>
+
+<div>
+	<div style="width:100%;height:auto;">
+		<h2>JSON</h2>
+			<!-- JSON for data object goes below -->
+			<textarea id="json" style="width:100%;background-color:#224FBC;color:#FFFF66;" rows="20">
+{
+  "_id": "663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+  "_rev": "4-f89d38455b3d6aee44b5f86178328995",
+  "authors": [
+    {
+      "surname": "Elson-Harris",
+      "forename": "M M"
+    },
+    {
+      "surname": "Kettle",
+      "forename": "D S"
+    }
+  ],
+  "type": "Journal Article",
+  "title": "A new species of Paradasyhelea Macfie (Diptera: Ceratopogonidae), with descriptions and keys to the immature stages of Australian Paradasyhelea",
+  "year": "1985",
+  "id": "663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+  "publication_outlet": "Journal of The Australian Entomological Society",
+  "volume": "24",
+  "pages": "233-240",
+  "urls": [
+    "http://dx.doi.org/10.1111/j.1440-6055.1985.tb00235.x"
+  ],
+  "identifiers": {
+    "doi": "10.1111/j.1440-6055.1985.tb00235.x"
+  },
+  "docType": "publication"
+}			</textarea>
+			<br />
+			<button onclick="convert()">Convert JSON to RDF</button>
+	</div>
+	<div style="clear:both;"></div>
+	
+	<div style="width:100%;">
+		<h2>Triples</h2>
+		<div id="output" style="width:100%;background-color:#FF7;color:#222;overflow:auto;"></div>
+		<h2>Graph</h2>
+		<div id="graph" style="width:100%;overflow:auto;"></div>
+		<h2>JSON-LD</h2>
+		<div id="jsonld" style="width:100%;white-space:pre;background-color:#333;color:white;overflow:auto;"></div>
+
+</div>			
+			
+		
+		
+		
+<script>
+	
+//----------------------------------------------------------------------------------------
+// START COUCHDB VIEW
+function message(doc) {
+    var subject_id = 'urn:lsid:biodiversity.org.au:afd.publication:' + doc._id;   
+    
+    var triples = [];
+    var type = '';
+
+    for (var i in doc) {
+      switch (i) {
+
+      	case 'title':
+			triples.push(triple(subject_id,
+              'http://schema.org/name',
+              doc[i]));   
+            break;
+            
+            
+        case 'identifiers':
+          for (var j in doc[i]) {
+          	switch (j) {
+          		case 'doi':
+					triples.push(triple(subject_id,
+					  'http://schema.org/identifier',
+					  'http://identifiers.org/doi/' + doc[i][j].toLowerCase()));
+			 		break;
+			 	
+			 	default:
+			 		break;
+			 }
+		  }
+          break;
+
+        case 'urls':
+          for (var j in doc[i]) {
+            triples.push(triple(subject_id,
+            	'http://schema.org/url',
+            	doc[i][j]));
+          }
+          break;
+          
+			// article metadata
+		  case 'issue':
+			triples.push(triple(subject_id,
+			  'http://schema.org/issueNumber',
+			  doc[i]));
+			break;
+
+		  case 'pages':
+			triples.push(triple(subject_id,
+			  'http://schema.org/pagination',
+			  doc[i]));
+			break;
+
+		  case 'volume':
+			triples.push(triple(subject_id,
+			  'http://schema.org/volumeNumber',
+			  doc[i]));
+			break;
+
+		  case 'year':
+			triples.push(triple(subject_id,
+			  'http://schema.org/datePublished',
+			  doc[i]));
+			break;	
+
+		  case 'publication_outlet':
+			triples.push(triple(subject_id,
+			  'http://prismstandard.org/namespaces/basic/2.1/publicationName',
+			  doc[i]));
+			break;	
+			
+		/*
+  "authors": [
+    {
+      "surname": "Elson-Harris",
+      "forename": "M M"
+    },
+    {
+      "surname": "Kettle",
+      "forename": "D S"
+    }
+  ],
+*/		
+
+			case 'authors':
+				var n = doc[i].length;
+			
+			// store an ordered list of authors as well
+			
+			//http://purl.org/ontology/bibo/contributorList
+			
+			
+				for (var j = 0; j < n; j++) {
+			  		var author_id = subject_id + '#author_' + (j + 1);
+			  		
+			  		// type, need to handle organisations as authors
+					  triples.push(triple(author_id,
+						'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+						'http://schema.org/Person'));
+
+					  triples.push(triple(subject_id,
+						'http://schema.org/author',
+						author_id));
+			  		
+					  // name
+					  var name = '';
+					  if (doc[i][j].forename) {
+						triples.push(triple(author_id,
+						  'http://schema.org/givenName', // ?
+						  doc[i][j].forename));
+
+						  name += doc[i][j].forename;
+					  }
+					  if (doc[i][j].surname) {
+						triples.push(triple(author_id,
+						  'http://schema.org/familyName', // ?
+						  doc[i][j].surname));
+
+						name += ' ' + doc[i][j].surname;
+					  }		
+					  
+					  if (name != '') {
+						triples.push(triple(author_id,
+						  'http://schema.org/name', // ?
+						  name));
+					  }
+					  	
+				}
+				break;
+				
+ 			
+		case 'type':
+			switch (doc[i]) {
+			  case 'Journal Article':
+			    type = 'http://schema.org/ScholarlyArticle';
+				break;
+			  default:
+				break;
+			}
+			break;            
+            
+        default:
+        	break;   
+      
+      
+      }
+    }
+
+    if (type == '') {
+      type = 'http://schema.org/CreativeWork';
+    }
+    
+
+    // defaults
+    triples.push(triple(subject_id,
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+      type));
+
+    output(doc, triples);
+    
+    console.log(JSON.stringify(triples));
+  
+}
+
+function couchdb(doc) {
+  if (doc.docType) {
+    if (doc.docType == 'publication') {
+      message(doc);
+    }
+  }
+}
+// END COUCHDB VIEW
+
+		
+//----------------------------------------------------------------------------------------
+function convert() {
+	var json = $('#json').val();
+	var doc = JSON.parse(json);
+	
+	
+	
+	couchdb(doc);
+}
+
+	
+	</script>		
+			
+
+</div>
+</body>
+</html>			

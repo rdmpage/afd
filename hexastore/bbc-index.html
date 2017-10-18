@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8" />
+  	<title>BBC Graph Database</title>
+  	
+  	<style>
+  		body {
+  			font-family:arial,helvetica,sans-serif;
+  			background-color:rgb(240,240,240);
+  		}
+  	</style>
+  	
+  	
+	<script src="hexastore.js"></script>  	
+  	<script>
+		var mydb = new Hexastore();	
+	</script>
+
+	<!-- include triples -->
+	<script src="data.json"></script>
+
+</head>
+<body>
+	<div id="output"></div>
+	
+	<script>
+	
+		//--------------------------------------------------------------------------------
+		// Get type(s)
+		function get_type(uri) {
+			var type = [];
+
+		  var result = mydb.search([
+			[uri, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", ["type"]]
+			  ]);
+
+          if (result.length > 0) {
+			  for(var i in result) {
+			  	type.push(result[i].type);
+			  }
+			}
+
+		  return type;		
+		}		
+
+		//--------------------------------------------------------------------------------
+		// Get label
+		function get_label(uri) {
+			label = '';
+
+		  var result = mydb.search([
+			[uri, "http://www.w3.org/2000/01/rdf-schema#label", ["label"]]
+			  ]);
+
+          if (result.length == 1) {
+			  for(var i in result) {
+			  	label = result[i].label;
+			  }
+			}
+
+		  return label;		
+		}		
+
+		//--------------------------------------------------------------------------------
+		// Get name
+		function get_name(uri) {
+			label = '';
+
+		  var result = mydb.search([
+			[uri, "http://purl.org/ontology/wo/name", ["name"]],
+			[["name"], "http://www.w3.org/2000/01/rdf-schema#label", ["label"]]
+			  ]);
+
+          if (result.length == 1) {
+			  for(var i in result) {
+			  	label = result[i].label;
+			  }
+			}
+
+		  return label;		
+		}		
+	
+		
+		//--------------------------------------------------------------------------------
+		// Get things which coccur with property of thing, [x?, p1, o],[x?, p2, y?] 
+		// In this function we do a count of their frequency
+		function get_cooccurrence(object, thing_uri, facet_uri, facet_name, cofacet_uri, cofacet_name) {
+
+		  var result = mydb.search([
+			[["x"], facet_uri, thing_uri],
+			[["x"], cofacet_uri, ["cofacet"]],
+			[["cofacet"], "http://www.w3.org/2000/01/rdf-schema#label", ["name"]]
+			  ]);
+			  
+			  if (result.length > 0) {
+				 object.cofacets[cofacet_name] = {};
+  
+				  for(var i in result) {
+					var name = result[i].name;
+					
+					//console.log(name);
+					if (!object.cofacets[cofacet_name][name]) {
+						var facet = {};
+						facet.name = name;
+						facet.count = 0;
+						object.cofacets[cofacet_name][name] = facet;
+						
+						//console.log(JSON.stringify(facet, null, 2));
+						//console.log(cofacet_name + ',' + name);
+						//console.log(JSON.stringify(object.cofacets, null, 2));
+					}
+				   object.cofacets[cofacet_name][name].count++;
+
+				  }
+			  }		  
+			  
+			//console.log(JSON.stringify(result, null, 2));
+			//console.log(JSON.stringify(object.cofacets, null, 2));
+
+		  	return object;		
+		}
+
+		//--------------------------------------------------------------------------------
+		// Get properties of the thing that are of a certain kind  [s,p,?]
+		// e.g. species has behaviour(s) x
+		function get_facet(object, thing_uri, facet_uri, facet_name) {
+
+		  var result = mydb.search([
+			[thing_uri, facet_uri, ["facet"]],
+			[["facet"], "http://www.w3.org/2000/01/rdf-schema#label", ["label"]],
+			[["facet"], "http://xmlns.com/foaf/0.1/depiction", ["image"]],
+			[["image"], "http://xmlns.com/foaf/0.1/thumbnail", ["thumbnail"]]
+			  ]);
+
+          if (result.length > 0) {
+             object.facets[facet_name] = [];
+  
+			  for(var i in result) {
+			    var facet = {};
+			    
+					var pattern = /\\u([\d\w]{4})/gi;
+					var text = result[i].label;
+					text = text.replace(pattern, function (match, grp) {
+						return String.fromCharCode(parseInt(grp, 16)); } ); 
+						
+					text = text.replace(/\\r\\n/g, ''); 		
+			    
+			    
+			    facet.name = text;
+			    facet.thumbnail = result[i].thumbnail;
+			    facet.url = result[i].facet;
+				object.facets[facet_name].push(facet);
+			  }
+			  
+		  }		  
+
+		  //console.log(JSON.stringify(object, null, 2));
+
+		  return object;		
+		}
+		
+		//--------------------------------------------------------------------------------
+		// Get things which have a specific property, [?,p,o]
+		// e.g. species with behaviour x
+		function get_has_facet(object, thing_uri, facet_uri, facet_name) {
+
+		  var result = mydb.search([
+			[["thing"], facet_uri, thing_uri],
+			[["thing"], "http://www.w3.org/2000/01/rdf-schema#label", ["label"]],
+			[["thing"], "http://xmlns.com/foaf/0.1/depiction", ["image"]] /*,
+			[["thing"], "http://xmlns.com/foaf/0.1/thumbnail", ["thumbnail"]]*/
+			  ]);
+
+          if (result.length > 0) {
+             object.facets[facet_name] = [];
+  
+			  for(var i in result) {
+			    var facet = {};
+			    
+			    
+					var pattern = /\\u([\d\w]{4})/gi;
+					var text = result[i].label;
+					text = text.replace(pattern, function (match, grp) {
+						return String.fromCharCode(parseInt(grp, 16)); } ); 
+						
+					text = text.replace(/\\r\\n/g, ''); 		
+			    
+			    
+			    facet.name = text;
+			    
+			    
+			    facet.thumbnail = result[i].image;
+			    facet.url = result[i].thing;
+				object.facets[facet_name].push(facet);
+			  }
+		  }		  
+
+		  //console.log(JSON.stringify(result, null, 2));
+
+		  return object;		
+		}
+		
+		//--------------------------------------------------------------------------------
+		// Get things which have the same type
+		function get_same_type(object, thing_uri) {
+
+		  var result = mydb.search([
+			[thing_uri, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", ["type"]],
+			[["thing"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", ["type"]],
+			[["thing"], "http://www.w3.org/2000/01/rdf-schema#label", ["label"]]
+			  ]);
+
+          if (result.length > 0) {
+
+             object.sameType = [];
+  
+			  for(var i in result) {
+			  	if (result[i].thing != thing_uri) {
+			    	var facet = {};
+			    
+					var pattern = /\\u([\d\w]{4})/gi;
+					var text = result[i].label;
+					text = text.replace(pattern, function (match, grp) {
+						return String.fromCharCode(parseInt(grp, 16)); } ); 
+						
+					text = text.replace(/\\r\\n/g, ''); 		
+				    facet.name = text;
+				    
+				    facet.type = result[i].type;
+				    facet.url = result[i].thing;
+
+					object.sameType.push(facet);
+				}
+			  }
+		  }		  
+
+		  //console.log(JSON.stringify(result, null, 2));
+
+		  return object;		
+		}		
+		
+		//--------------------------------------------------------------------------------
+		// Programme needs special handling as it has different type of label [?,p,o]
+		function get_has_programme(object, thing_uri) {
+
+		  var result = mydb.search([
+			[["thing"], "http://purl.org/ontology/po/subject", thing_uri],
+			[["thing"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://purl.org/ontology/po/Clip"],
+			[["thing"], "http://purl.org/dc/terms/title", ["title"]]
+			  ]);
+			  
+			var facet_name = "programme";
+
+          if (result.length > 0) {
+             object.facets[facet_name] = [];
+  
+			  for(var i in result) {
+			    var facet = {};
+			    facet.name = result[i].title;
+			    facet.url = result[i].thing;
+				object.facets[facet_name].push(facet);
+			  }
+		  }		  
+
+		  //console.log(JSON.stringify(result, null, 2));
+
+		  return object;		
+		}
+
+		//--------------------------------------------------------------------------------
+		// External links [?,p,o]
+		function get_has_link(object, thing_uri) {
+
+		  var result = mydb.search([
+			[["thing"], "http://xmlns.com/foaf/0.1/primaryTopic", thing_uri],
+			[["thing"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://xmlns.com/foaf/0.1/Document"]
+			  ]);
+			  
+			var facet_name = "elsewhere on the web";
+
+          if (result.length > 0) {
+             object.facets[facet_name] = [];
+  
+			  for(var i in result) {
+			    var facet = {};
+			    facet.url = result[i].thing;
+				object.facets[facet_name].push(facet);
+			  }
+		  }		  
+
+		  //console.log(JSON.stringify(result, null, 2));
+
+		  return object;		
+		}
+		
+		
+	
+		//--------------------------------------------------------------------------------
+		// Get basic properties of thing, [s,?,?]
+		function get_thing(uri) {
+		
+		  var object = {};
+		  object.id = uri;
+
+		  object.sameAs = [];
+		  object.commonName = []; // fails as commonName seems to be associated with /species/ but not /life/
+		  
+		  object.ecozone = [];
+		  
+		  
+		  var result = mydb.search([
+			[uri, ["p"], ["o"]]
+			  ]);
+  
+		  //console.log(JSON.stringify(result, null, 2));
+
+		  for(var i in result) {
+		  
+		  	//alert(result[i]['p']);
+  
+			switch (result[i]['p']) {
+				case "http://xmlns.com/foaf/0.1/depiction":
+					object.image = result[i]['o'];
+					break;
+
+				case "http://www.w3.org/2000/01/rdf-schema#label":
+					object.name = result[i]['o'];
+					break;
+
+				case "http://purl.org/dc/terms/description":	
+					// clean up
+					var pattern = /\\u([\d\w]{4})/gi;
+					var text = result[i]['o'];
+					text = text.replace(pattern, function (match, grp) {
+						return String.fromCharCode(parseInt(grp, 16)); } ); 
+						
+					text = text.replace(/\\r\\n/g, ''); 		
+		
+					object.description = text;
+					break;
+					
+				case "http://www.w3.org/2002/07/owl#sameAs":
+					object.sameAs.push(result[i]['o']);
+					break;
+					
+				case "http://purl.org/ontology/wo/commonName":
+					object.commonName.push(result[i]['o']);
+					break;	
+					
+				case "http://purl.org/ontology/wo/ecozone":				
+					object.ecozone.push(result[i]['o']);
+					break;	
+					
+				/*
+				// This is broken as none of the images are still live
+				case "http://purl.org/ontology/wo/distributionMap":
+					object.distributionMap = result[i]['o'];
+					break;
+				*/
+				
+				// Classification
+				case 'http://purl.org/ontology/wo/kingdom':
+				case 'http://purl.org/ontology/wo/phylum':
+				case 'http://purl.org/ontology/wo/class':
+				case 'http://purl.org/ontology/wo/superorder':
+				case 'http://purl.org/ontology/wo/order':
+				case 'http://purl.org/ontology/wo/infraorder':
+				case 'http://purl.org/ontology/wo/family':
+				case 'http://purl.org/ontology/wo/genus':
+					object[result[i]['p'].replace(/http:\/\/purl.org\/ontology\/wo\//, '')] = result[i]['o'];
+					break;
+					
+				// Taxon name
+				case "http://purl.org/ontology/wo/name":
+					var r = mydb.search([
+						[uri, "http://purl.org/ontology/wo/name", ["name"]],
+						[["name"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://purl.org/ontology/wo/TaxonName"],
+						[["name"], "http://www.w3.org/2000/01/rdf-schema#label", ["label"]],			
+					  ]);
+					  
+					console.log(JSON.stringify(r, null, 2));
+					  
+					if (r.length == 1) {
+						object.taxonName =	r[0].label;
+					}
+					break;					
+			
+				default:
+					break;
+			}
+  
+		  }		
+		  
+		  // cleanup
+		  if (object.commonName.length == 0) {
+		  	//delete(object.commonName);
+		  }
+		  
+		  // features/facets
+		  object.facets = {};
+		  
+		  object.cofacets = {};
+		  
+			// programme on (linked to /species/)
+			var thing_uri = uri;	
+			thing_uri= thing_uri.replace(/\/life\//, '/species/');
+			object = get_has_programme(object, thing_uri);
+
+			// external links (linked to /species/)	
+			object = get_has_link(object, thing_uri);
+
+
+		  	// facets of thing
+			// Habitats
+			object = get_facet(object, uri, "http://purl.org/ontology/wo/livesIn", "habitat");
+
+			// Adaptations			
+			object = get_facet(object, uri, "http://purl.org/ontology/wo/adaptation", "adaptation");
+
+			// Ecozones (BBC RDF is broken)
+			object = get_facet(object, uri, "http://purl.org/ontology/wo/ecozone", "ecozone");
+
+			// things with this facet-----------------------------------------------------
+			// grows in 			
+			object = get_has_facet(object, uri, "http://purl.org/ontology/wo/growsIn", "grows in");
+
+			// lives in 			
+			object = get_has_facet(object, uri, "http://purl.org/ontology/wo/livesIn", "lives in");
+
+			// has this behaviour 			
+			object = get_has_facet(object, uri, "http://purl.org/ontology/wo/adaptation", "behaviour");
+
+			// other things of this type (related by kind)
+			var type = get_type(uri);
+			
+			// Ignore this for things like species where we get lots of hits which aen't interesting
+			var ok = true;			
+			for (var i in type) {
+				switch (type[i]) {
+					case 'http://purl.org/ontology/wo/Species':
+						ok = false;
+						break;
+					default:
+						break;
+				}
+			}
+			
+			if (ok) {
+				object = get_same_type(object, uri);
+			}
+
+			// classification path
+				
+			object.path = [];
+			var ranks = [
+			'http://purl.org/ontology/wo/kingdom',
+			'http://purl.org/ontology/wo/phylum',
+			'http://purl.org/ontology/wo/class',
+			'http://purl.org/ontology/wo/superorder',
+			'http://purl.org/ontology/wo/order',
+			'http://purl.org/ontology/wo/infraorder',
+			'http://purl.org/ontology/wo/family',
+			'http://purl.org/ontology/wo/genus'
+			];
+
+			for (var i in type) {
+				switch (type[i]) {
+					case 'http://purl.org/ontology/wo/Species':
+						for (var j in ranks) {
+							var label = get_name(object[ranks[j].replace(/http:\/\/purl.org\/ontology\/wo\//, '')]);
+							if (label != '') {
+								object.path.push(label);
+							}
+						}
+					
+						break;
+					default:
+						break;
+				}
+			}
+			
+					
+
+			// related by tree
+
+			// coccurrences 
+			
+			// who has this adaptation and in what habitat
+			object = get_cooccurrence(object, uri, 
+				"http://purl.org/ontology/wo/adaptation", "adaption", 
+				"http://purl.org/ontology/wo/livesIn", "habitat");
+			
+
+
+		  //console.log(JSON.stringify(object, null, 2));
+
+		 return object;
+		
+		}
+		
+		//--------------------------------------------------------------------------------
+		function show_thing(object) {
+		
+			// yuck but hey it works
+			var html = '';
+			
+			if (object.name) {
+				html += '<h1>' + object.name + '</h1>';
+			}
+
+			if (object.description) {
+				html += '<div style="background-color:white;border:1px solid rgb(242,242,242);min-height:250px;padding:5px;">';
+				
+				if (object.image) {
+					html += '<div style="float:right;"><img src="' + object.image + '" height="250" /></div>';
+				}
+
+				
+				html +=  object.description;
+				
+				if (object.taxonName) {
+					html += '<br /><br /><span>Scientific name: ' + object.taxonName + '</span>';
+				}
+				
+				if (object.commonName) {					
+					html += '<br /><br /><span>Common name(s): ' + object.commonName.join(", ") + '</span>';				
+				}
+				
+				
+				if (object.sameAs) {
+					html += '<ul>';
+					for (var i in object.sameAs) {
+						html += '<li>' + '<a href="' + object.sameAs[i] + '" target="_new">' + object.sameAs[i] +  '</a>' + '</li>';
+					}
+					html += '</ul>';
+				}
+				
+				html += '</div>';
+			}
+			
+			 
+			if(object.distributionMap) {
+				html += '<h2>distribution</h2>';
+				html += '<img src="' + object.distributionMap + '" />';
+			}
+			
+			if (object.facets) {
+				for (var i in object.facets) {
+					html += '<h2>' + i + '</h2>';
+					html += '<div>';
+					
+					for (var j in object.facets[i]) {
+						html += '<div style="position:relative;display:inline-block;padding:10px;border:1px solid rgb(242,242,242);margin:5px;background-color:white;width:120px;">';
+						
+						if (object.facets[i][j].thumbnail) {
+							html += '<img src="' + object.facets[i][j].thumbnail + '" width="104" height="83" onclick="go(\'' + object.facets[i][j].url + '\');"/>';
+							html += '<br />';
+						}
+						
+						if (object.facets[i][j].name) {
+							html += '<span style="font-size:12px;">' + object.facets[i][j].name + '</span>';
+							html += '<br />';
+						}
+
+						if (object.facets[i][j].url && !object.facets[i][j].thumbnail) {
+						
+							var domain = object.facets[i][j].url.match(/^https?:\/\/(([a-zA-Z\d-]+\.)+[a-zA-Z\d-]+)/);
+							if (domain) {
+								html += '<span style="font-size:12px;">' + '<a href="' + object.facets[i][j].url + '" target="_new">' + domain[1] + '</a>' + '</span>';
+							}
+						}
+						
+						
+						
+						html += '</div>';
+					
+					}
+					
+					html += '</div>';
+				
+				}
+			
+			}
+			
+			if (object.path) {
+				html += '<h2>' + 'classification' + '</h2>';
+				html += '<ul>';
+			
+				for (var i in object.path) {
+					html += '<li style="font-size:12px;">' + object.path[i]  + '</li>';
+				}
+				
+				html += '</ul>';
+			
+			
+			
+			}
+			
+			if (object.sameType) {
+				html += '<h2>' + 'same type' + '</h2>';
+				html += '<ul>';
+			
+				for (var i in object.sameType) {
+					html += '<li style="font-size:12px;">' + object.sameType[i].name  + '</li>';
+				}
+				
+				html += '</ul>';
+			
+			}
+			
+			
+			if (object.cofacets) {
+				for (var i in object.cofacets) {
+					html += '<h2>' + i + '</h2>';
+					html += '<ul>';
+					
+					for (var j in object.cofacets[i]) {
+						html += '<li style="font-size:12px;">' + object.cofacets[i][j].name + ' (' + object.cofacets[i][j].count + ')' + '</li>';
+					}
+					
+					html += '</ul>';
+				
+				}
+			
+			}
+			
+			
+			
+			document.getElementById('output').innerHTML = html;
+		
+		}
+		
+		function go(uri) {
+			var object = get_thing(uri);
+			show_thing(object);
+			window.scrollTo(0, 0);
+		}
+
+		
+		var uri = '';
+		uri = "http://www.bbc.co.uk/nature/life/Haast's_Eagle#species";
+		uri = "http://www.bbc.co.uk/nature/habitats/Temperate_broadleaf_and_mixed_forests#habitat";
+		uri = "http://www.bbc.co.uk/nature/life/Steller's_Sea_Eagle#species";
+		uri = "http://www.bbc.co.uk/nature/habitats/Coast#habitat";
+		//uri = "http://www.bbc.co.uk/nature/life/Baikal_Seal#species"; 
+		//uri = "http://www.bbc.co.uk/nature/adaptations/Torpor#adaptation";
+		//uri = "http://www.bbc.co.uk/nature/life/Daubenton's_Bat#species";
+		
+		
+		uri = "http://www.bbc.co.uk/nature/adaptations/Torpor#adaptation";
+		
+		uri = "http://www.bbc.co.uk/nature/adaptations/Flight#adaptation";
+
+		//uri = "http://www.bbc.co.uk/nature/life/Python_sebae#species";
+		
+uri = "http://www.bbc.co.uk/nature/habitats/Coast#habitat";
+uri = "http://www.bbc.co.uk/nature/habitats/Neritic_zone#habitat";
+
+uri = "http://www.bbc.co.uk/nature/life/Bowhead_whale#species";
+
+uri = "http://www.bbc.co.uk/nature/life/Steller's_Sea_Eagle#species";
+
+
+
+		
+		var object = get_thing(uri);
+		show_thing(object);
+		
+		
+
+	
+		  console.log(JSON.stringify(object, null, 2));
+
+		
+		
+	</script>
+
+
+
+
+</body>
+</html>

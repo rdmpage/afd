@@ -1,0 +1,135 @@
+<html>
+	<head>
+		<title>AFD JSON to n-triples</title>
+		<meta charset="UTF-8"/>
+		<script src="jquery.js"></script>
+		<script src="jsonld.js"></script>
+		<script src="viz.js"></script>
+		<!-- stuff below needs to go into CouchDB views -->
+		<script src="shared.js"></script>
+		<script src="language.js"></script>
+		<style>
+		td { border: 1px solid red; }
+		</style>
+	</head>
+<body>
+
+<h1>AFD JSON to n-triples</h1>
+
+<div>
+	<div style="width:100%;height:auto;">
+		<h2>JSON</h2>
+			<!-- JSON for data object goes below -->
+			<textarea id="json" style="width:100%;background-color:#224FBC;color:#FFFF66;" rows="20">
+{
+  "_id": "a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+  "_rev": "1-a4f8b56cd69f442e29d317d741d62eb2",
+  "docType": "taxonConcept",
+  "guid": "a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+  "parent": "4a904e96-abde-429c-9c54-b42827e642d5",
+  "nameString": "Paradasyhelea reyei",
+  "nameStringHtml": "<i>Paradasyhelea reyei</i>",
+  "rankString": "Species"
+}
+		</textarea>
+			<br />
+			<button onclick="convert()">Convert JSON to RDF</button>
+	</div>
+	<div style="clear:both;"></div>
+	
+	<div style="width:100%;">
+		<h2>Triples</h2>
+		<div id="output" style="width:100%;background-color:#FF7;color:#222;overflow:auto;"></div>
+		<h2>Graph</h2>
+		<div id="graph" style="width:100%;overflow:auto;"></div>
+		<h2>JSON-LD</h2>
+		<div id="jsonld" style="width:100%;white-space:pre;background-color:#333;color:white;overflow:auto;"></div>
+
+</div>			
+			
+		
+		
+		
+<script>
+	
+//----------------------------------------------------------------------------------------
+// START COUCHDB VIEW
+function message(doc) {
+    var subject_id = 'urn:lsid:biodiversity.org.au:afd.taxon:' + doc._id;   
+    
+    var triples = [];
+    var type = 'http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept';
+
+    for (var i in doc) {
+      switch (i) {
+
+      	case 'nameString':
+			triples.push(triple(subject_id,
+              'http://schema.org/name',
+              doc[i]));
+
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/TaxonConcept#nameString',
+              doc[i]));
+            break;
+            
+      	case 'rankString':
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString',
+              doc[i]));
+            break;
+
+      	case 'parent':
+			triples.push(triple(subject_id,
+              'http://www.w3.org/2000/01/rdf-schema#subClassOf',
+              'urn:lsid:biodiversity.org.au:afd.taxon:' + doc[i]));
+            break;
+            
+        default:
+        	break;   
+      
+      
+      }
+    }
+
+
+
+    // defaults
+    triples.push(triple(subject_id,
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+      type));
+     
+
+    output(doc, triples);
+    
+    console.log(JSON.stringify(triples));
+  
+}
+
+function couchdb(doc) {
+  if (doc.docType) {
+    if (doc.docType == 'taxonConcept') {
+      message(doc);
+    }
+  }
+}
+// END COUCHDB VIEW
+
+		
+//----------------------------------------------------------------------------------------
+function convert() {
+	var json = $('#json').val();
+	var doc = JSON.parse(json);
+	
+	
+	
+	couchdb(doc);
+}
+
+	
+	</script>		
+			
+
+</div>
+</body>
+</html>			

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8" />
+  	<title>AFD triples</title>
+  	
+  	<style>
+  		body {
+  			font-family:arial,helvetica,sans-serif;
+  			background-color:rgb(240,240,240);
+  		}
+  	</style>
+  	
+  	
+	<script src="hexastore.js"></script>  	
+  	<script>
+		var mydb = new Hexastore();	
+	</script>
+
+	<!-- include triples -->
+	<!-- <script src="data.json"></script> -->
+	
+	<script>
+	mydb.putAll(
+[
+
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://schema.org/name",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#nameString",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString",
+    "Species"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept"
+  ],
+
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/Person"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/author",
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://schema.org/givenName",
+    "J W S"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://schema.org/familyName",
+    "Macfie"
+  ],
+  
+  
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "urn:lsid:biodiversity.org.au:afd.name:4a904e96-abde-429c-9c54-b42827e642d5"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://schema.org/name",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#nameComplete",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString",
+    "Species"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept"
+  ],
+  
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://schema.org/name",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#authorship",
+    "Wirth & Lee"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation",
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://rs.tdwg.org/ontology/voc/Common#publishedIn",
+    "Wirth, W.W. & Lee, D.J. 1959. The genus Paradasyhelea Macfie, with descriptions of two new species from eastern Australia (Diptera: Ceratopogonidae). Bulletin of the Brooklyn Entomological Society 54: 114-321"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName",
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:5bf743a0-bcfb-49e0-8bef-b1006b853cc8",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nomenclaturalCode",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#ICZN"
+  ],
+  
+
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_1",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/Person"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://schema.org/author",
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_1"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_1",
+    "http://schema.org/givenName",
+    "W W"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_1",
+    "http://schema.org/familyName",
+    "Wirth"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_2",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/Person"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://schema.org/author",
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_2"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_2",
+    "http://schema.org/givenName",
+    "D J"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c#author_2",
+    "http://schema.org/familyName",
+    "Lee"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://schema.org/name",
+    "The genus Paradasyhelea Macfie, with descriptions of two new species from eastern Australia (Diptera: Ceratopogonidae)"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://schema.org/datePublished",
+    "1959"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://prismstandard.org/namespaces/basic/2.1/publicationName",
+    "Bulletin of The Brooklyn Entomological Society"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://schema.org/volumeNumber",
+    "54"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://schema.org/pagination",
+    "114-321"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/ScholarlyArticle"
+  ],
+  
+      
+  
+ [
+    "urn:lsid:biodiversity.org.au:afd.name:75b6b241-a118-4394-b52d-e30069cca4d1",
+    "http://schema.org/name",
+    "Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:75b6b241-a118-4394-b52d-e30069cca4d1",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete",
+    "Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:75b6b241-a118-4394-b52d-e30069cca4d1",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#authorship",
+    "Macfie"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName",
+    "urn:lsid:biodiversity.org.au:afd.name:75b6b241-a118-4394-b52d-e30069cca4d1"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:75b6b241-a118-4394-b52d-e30069cca4d1",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:75b6b241-a118-4394-b52d-e30069cca4d1",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nomenclaturalCode",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#ICZN"
+  ],
+  
+  
+  
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/name",
+    "The genera of Ceratopogonidae"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/datePublished",
+    "1940"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://prismstandard.org/namespaces/basic/2.1/publicationName",
+    "Annals of Tropical Medicine And Parasitology"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/volumeNumber",
+    "34"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/pagination",
+    "13-30"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/ScholarlyArticle"
+  ],
+  
+  
+  
+  
+
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "urn:lsid:biodiversity.org.au:afd.taxon:7cfd00aa-6d20-4198-b31d-a2161fa81812"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f",
+    "http://schema.org/name",
+    "CULICOIDINI"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#nameString",
+    "CULICOIDINI"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString",
+    "Tribe"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://schema.org/name",
+    "Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#nameString",
+    "Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString",
+    "Genus"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept"
+  ],
+  
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "http://schema.org/name",
+    "Paradasyhelea reyei"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#nameString",
+    "Paradasyhelea reyei"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString",
+    "Species"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept"
+  ],
+  
+
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+    "urn:lsid:biodiversity.org.au:afd.name:4a904e96-abde-429c-9c54-b42827e642d5"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://schema.org/name",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#nameComplete",
+    "Paradasyhelea albipunctata"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#rankString",
+    "Species"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#TaxonConcept"
+  ],
+
+  
+    
+ [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://schema.org/name",
+    "Paradasyhelea reyei"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete",
+    "Paradasyhelea reyei"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#authorship",
+    "Elson-Harris & Kettle"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation",
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://rs.tdwg.org/ontology/voc/Common#publishedIn",
+    "Elson-Harris, M.M. & Kettle, D.S. 1985. A new species of Paradasyhelea Macfie (Diptera: Ceratopogonidae), with descriptions and keys to the immature stages of Australian Paradasyhelea. Journal of the Australian Entomological Society 24: 233-240"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName",
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nomenclaturalCode",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#ICZN"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_1",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/Person"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/author",
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_1"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_1",
+    "http://schema.org/givenName",
+    "M M"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_1",
+    "http://schema.org/familyName",
+    "Elson-Harris"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_2",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/Person"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/author",
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_2"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_2",
+    "http://schema.org/givenName",
+    "D S"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac#author_2",
+    "http://schema.org/familyName",
+    "Kettle"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/name",
+    "A new species of Paradasyhelea Macfie (Diptera: Ceratopogonidae), with descriptions and keys to the immature stages of Australian Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/datePublished",
+    "1985"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://prismstandard.org/namespaces/basic/2.1/publicationName",
+    "Journal of The Australian Entomological Society"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/volumeNumber",
+    "24"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/pagination",
+    "233-240"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/url",
+    "http://dx.doi.org/10.1111/j.1440-6055.1985.tb00235.x"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://schema.org/identifier",
+    "http://identifiers.org/doi/10.1111/j.1440-6055.1985.tb00235.x"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/ScholarlyArticle"
+  ] ,
+  
+  
+ [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/Person"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/author",
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://schema.org/givenName",
+    "J W S"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://schema.org/familyName",
+    "Macfie"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517#author_1",
+    "http://schema.org/name",
+    "J W S Macfie"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/name",
+    "The genera of Ceratopogonidae"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/datePublished",
+    "1940"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://prismstandard.org/namespaces/basic/2.1/publicationName",
+    "Annals of Tropical Medicine And Parasitology"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/volumeNumber",
+    "34"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://schema.org/pagination",
+    "13-30"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://schema.org/ScholarlyArticle"
+  ],
+  
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://schema.org/name",
+    "Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete",
+    "Paradasyhelea"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#authorship",
+    "Macfie"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation",
+    "urn:lsid:biodiversity.org.au:afd.publication:b32679ef-ca16-431e-9671-7f8e397f7517"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://rs.tdwg.org/ontology/voc/Common#publishedIn",
+    "Macfie, J.W.S. 1940. The genera of Ceratopogonidae. Annals of Tropical Medicine and Parasitology 34: 13-30"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName",
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName"
+  ],
+  [
+    "urn:lsid:biodiversity.org.au:afd.name:756db9c3-b5da-4df2-9dfe-b1ad4c4b1c4c",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#nomenclaturalCode",
+    "http://rs.tdwg.org/ontology/voc/TaxonName#ICZN"
+  ]     
+    
+
+
+]
+);
+</script>
+
+</head>
+<body>
+	<div id="output"></div>
+	
+	<script>
+	
+
+		// do a query
+		
+		var uri = "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe"; // taxon
+		
+			  var result = mydb.search([
+			[uri, "http://schema.org/name", ["name"]]
+			  ]);
+
+			/*
+          if (result.length == 1) {
+			  for(var i in result) {
+			  	label = result[i].label;
+			  }
+			}
+			*/
+			
+			console.log(JSON.stringify(result, null, 2));
+			
+			uri = 'urn:lsid:biodiversity.org.au:afd.taxon:a9cd069b-ae14-4b00-994f-bfbf07e7b69e';
+		
+			  result = mydb.search([
+			[uri, "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName", ["taxonName"]],
+			[["taxonName"], "http://schema.org/name", ["label"]],
+			[["taxonName"], "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation", ["publication"]],
+			//[["publication"], "http://schema.org/name", ["citation"]],
+			//[["publication"], "http://prismstandard.org/namespaces/basic/2.1/publicationName", ["container"]],
+			
+			
+			
+			  ]);
+			  
+			  uri = 'urn:lsid:biodiversity.org.au:afd.publication:a6dda4e5-f28c-4274-a4b9-3c69df16a89c'
+		  result = mydb.search([
+			[uri, ['p'], ['o']],
+//			[["taxonName"], "http://schema.org/name", ["label"]],
+//			[["taxonName"], "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation", ["publication"]],
+			//[["publication"], "http://schema.org/name", ["citation"]],
+			//[["publication"], "http://prismstandard.org/namespaces/basic/2.1/publicationName", ["container"]],
+			
+			
+			
+			  ]);			  
+			
+		
+console.log(JSON.stringify(result, null, 2));
+	
+		  //console.log(JSON.stringify(object, null, 2));
+
+			//uri = '1eb0a258-74d3-4ac2-a4f1-fd58d2634e64';
+			
+			/*
+{
+    "child": "urn:lsid:biodiversity.org.au:afd.taxon:09ce8b71-e147-40df-8e8f-3643f5defd2f",
+    "parent": "urn:lsid:biodiversity.org.au:afd.name:7cfd00aa-6d20-4198-b31d-a2161fa81812"
+  },
+  {
+    "child": "urn:lsid:biodiversity.org.au:afd.taxon:4a904e96-abde-429c-9c54-b42827e642d5",
+    "parent": "urn:lsid:biodiversity.org.au:afd.name:09ce8b71-e147-40df-8e8f-3643f5defd2f"
+  },
+  {
+    "child": "urn:lsid:biodiversity.org.au:afd.taxon:a5706f6a-5ed8-4bff-ac76-a027d30cd4fe",
+    "parent": "urn:lsid:biodiversity.org.au:afd.name:4a904e96-abde-429c-9c54-b42827e642d5"
+  }
+  */			
+
+			  result = mydb.search([
+			  
+			  
+			[["child"],  "http://www.w3.org/2000/01/rdf-schema#subClassOf", ["parent"]], 
+			[["parent"], "http://www.w3.org/2000/01/rdf-schema#subClassOf", ["grandparent"]],
+			[["child"], "http://schema.org/name", ["child_label"]],
+			[["parent"], "http://schema.org/name", ["parent_label"]],
+			[["grandparent"], "http://schema.org/name", ["grandparent_label"]],
+			
+			
+			[["child"], "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName", ["taxonName"]],
+			[["taxonName"], "http://schema.org/name", ["label"]],
+			[["taxonName"], "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation", ["publication"]],
+			[["publication"], "http://schema.org/name", ["citation"]],
+			[["publication"], "http://prismstandard.org/namespaces/basic/2.1/publicationName", ["container"]],
+			
+			  ]);
+			
+		
+console.log(JSON.stringify(result, null, 2));
+
+			  result = mydb.search([
+			  
+			  
+			[["child"],  "http://www.w3.org/2000/01/rdf-schema#subClassOf", ["parent"]], 
+			[["parent"], "http://www.w3.org/2000/01/rdf-schema#subClassOf", ["grandparent"]],
+			[["child"], "http://schema.org/name", ["child_label"]],
+			[["parent"], "http://schema.org/name", ["parent_label"]],
+			[["grandparent"], "http://schema.org/name", ["grandparent_label"]],
+			
+			
+			[["child"], "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName", ["taxonName"]],
+			[["taxonName"], "http://schema.org/name", ["label"]],
+			[["taxonName"], "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation", ["publication"]],
+			[["publication"], "http://schema.org/name", ["citation"]],
+			[["publication"], "http://prismstandard.org/namespaces/basic/2.1/publicationName", ["container"]],
+
+/*
+			[["parent"], "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName", ["taxonName1"]],
+			[["taxonName1"], "http://schema.org/name", ["label1"]],
+			[["taxonName1"], "http://rs.tdwg.org/ontology/voc/Common#publishedInCitation", ["publication1"]],
+			[["publication1"], "http://schema.org/name", ["citation1"]],
+			[["publication1"], "http://prismstandard.org/namespaces/basic/2.1/publicationName", ["container1"]],
+			
+*/
+			//[["publication"], "http://schema.org/author", ["author"]],
+			//[["author"], "http://schema.org/name", ["a"]],
+			
+			
+			  ]);
+			
+		
+console.log(JSON.stringify(result, null, 2));
+	
+
+		
+		
+	</script>
+
+
+
+
+</body>
+</html>

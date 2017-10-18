@@ -1,0 +1,165 @@
+<html>
+	<head>
+		<title>AFD JSON to n-triples</title>
+		<meta charset="UTF-8"/>
+		<script src="jquery.js"></script>
+		<script src="jsonld.js"></script>
+		<script src="viz.js"></script>
+		<!-- stuff below needs to go into CouchDB views -->
+		<script src="shared.js"></script>
+		<script src="language.js"></script>
+		<style>
+		td { border: 1px solid red; }
+		</style>
+	</head>
+<body>
+
+<h1>AFD JSON to n-triples</h1>
+
+<div>
+	<div style="width:100%;height:auto;">
+		<h2>JSON</h2>
+			<!-- JSON for data object goes below -->
+			<textarea id="json" style="width:100%;background-color:#224FBC;color:#FFFF66;" rows="20">
+{
+  "_id": "656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+  "_rev": "1-90059a7006aae0f237a6c084ba0d237f",
+  "docType": "taxonName",
+  "guid": "656a8b3f-d673-40d7-b8ec-92f9a5488e3b",
+  "rankString": "Species",
+  "nameType": "Synonym",
+  "nameComplete": "Paradasyhelea reyei",
+  "nameCompleteHtml": "<i>Paradasyhelea reyei</i>",
+  "authorship": "Elson-Harris & Kettle",
+  "nameWithAuthorship": "Paradasyhelea reyei Elson-Harris & Kettle, 1985",
+  "nameWithAuthorshipHtml": "<i>Paradasyhelea reyei</i> Elson-Harris & Kettle, 1985",
+  "year": "1985",
+  "originalCombination": true,
+  "publishedInCitation": "663a1cd5-d0f0-4c23-8b84-c2fb827cd6ac",
+  "publishedIn": "Elson-Harris, M.M. & Kettle, D.S. 1985. A new species of <I>Paradasyhelea</I> Macfie (Diptera: Ceratopogonidae), with descriptions and keys to the immature stages of Australian <I>Paradasyhelea</I>. <em>Journal of the Australian Entomological Society</em> <strong>24</strong>: 233-240",
+  "concept": "fc215aa4-6537-4d99-8dce-9961156daa1c",
+  "taxon": "a5706f6a-5ed8-4bff-ac76-a027d30cd4fe"
+}		</textarea>
+			<br />
+			<button onclick="convert()">Convert JSON to RDF</button>
+	</div>
+	<div style="clear:both;"></div>
+	
+	<div style="width:100%;">
+		<h2>Triples</h2>
+		<div id="output" style="width:100%;background-color:#FF7;color:#222;overflow:auto;"></div>
+		<h2>Graph</h2>
+		<div id="graph" style="width:100%;overflow:auto;"></div>
+		<h2>JSON-LD</h2>
+		<div id="jsonld" style="width:100%;white-space:pre;background-color:#333;color:white;overflow:auto;"></div>
+
+</div>			
+			
+		
+		
+		
+<script>
+	
+//----------------------------------------------------------------------------------------
+// START COUCHDB VIEW
+function message(doc) {
+    var subject_id = 'urn:lsid:biodiversity.org.au:afd.name:' + doc._id;   
+    
+    var triples = [];
+    var type = 'http://rs.tdwg.org/ontology/voc/TaxonName#TaxonName';
+
+    for (var i in doc) {
+      switch (i) {
+
+      	case 'nameComplete':
+			triples.push(triple(subject_id,
+              'http://schema.org/name',
+              doc[i]));
+
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/TaxonName#nameComplete',
+              doc[i]));
+            break;
+            
+      	case 'nameComplete':
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/TaxonName#rankString',
+              doc[i]));
+            break;
+
+      	case 'authorship':
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/TaxonName#authorship',
+              doc[i]));
+            break;
+
+      	case 'publishedInCitation':
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/Common#publishedInCitation',
+              'urn:lsid:biodiversity.org.au:afd.publication:' + doc[i]));
+            break;
+
+      	case 'publishedIn':
+			triples.push(triple(subject_id,
+              'http://rs.tdwg.org/ontology/voc/Common#publishedIn',
+              doc[i]));
+            break;
+
+      	case 'taxon':
+			triples.push(triple('urn:lsid:biodiversity.org.au:afd.taxon:' + doc[i],
+              'http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName',
+              subject_id));
+            break;
+            
+        default:
+        	break;   
+      
+      
+      }
+    }
+
+
+
+    // defaults
+    triples.push(triple(subject_id,
+      'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
+      type));
+
+    triples.push(triple(subject_id,
+      'http://rs.tdwg.org/ontology/voc/TaxonName#nomenclaturalCode',
+      'http://rs.tdwg.org/ontology/voc/TaxonName#ICZN'));
+      
+
+    output(doc, triples);
+    
+    console.log(JSON.stringify(triples));
+  
+}
+
+function couchdb(doc) {
+  if (doc.docType) {
+    if (doc.docType == 'taxonName') {
+      message(doc);
+    }
+  }
+}
+// END COUCHDB VIEW
+
+		
+//----------------------------------------------------------------------------------------
+function convert() {
+	var json = $('#json').val();
+	var doc = JSON.parse(json);
+	
+	
+	
+	couchdb(doc);
+}
+
+	
+	</script>		
+			
+
+</div>
+</body>
+</html>			

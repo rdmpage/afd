@@ -441,8 +441,7 @@ function display_publication($publication)
 	
 	echo html_head_close();
 	echo html_body_open();
-	
-	
+		
 	if (1)
 	{
 
@@ -516,10 +515,10 @@ function display_publication($publication)
 		
 		echo reference_to_coins($publication);
 		
-		echo '<div><a href="http://biostor.org/openurlhook.php?' 
+		echo '<div><a href="http://direct.biostor.org/openurl.php?' 
 			. reference_to_openurl($publication) 
 			. '&amp;webhook=' . urlencode($config['web_server'] . $config['web_root'] . 'webhook.php')
-			. '" target="_new">OpenURL Hook</a></div>';
+			. '" target="_new">OpenURL</a></div>';
 
 		
 		//------------------------------------------------------------------------------------------

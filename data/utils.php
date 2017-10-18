@@ -105,7 +105,7 @@ function import_from_openurl($openurl, $threshold = 0.5)
 	$found = 0;
 	
 	// 2. Call BioStor
-	$url = 'http://biostor.org/openurl.php?' . $openurl . '&format=json';
+	$url = 'http://direct.biostor.org/openurl.php?' . $openurl . '&format=json';
 	$json = get($url);
 	
 	//echo $url . "\n";
@@ -140,7 +140,7 @@ function import_from_openurl($openurl, $threshold = 0.5)
 		{		
 			// 6. We have a hit, construct OpenURL that forces BioStor to save
 			$openurl .= '&id=http://www.biodiversitylibrary.org/page/' . $x[$h]->PageID;
-			$url = 'http://biostor.org/openurl.php?' . $openurl . '&format=json';
+			$url = 'http://direct.biostor.org/openurl.php?' . $openurl . '&format=json';
 
 			$json = get($url);
 			$j = json_decode($json);
@@ -163,7 +163,24 @@ function reference2openurl($reference)
 	{
 		foreach ($reference->authors as $author)
 		{
-			$openurl .= '&rft.au=' . urlencode($author);
+			$name_parts = array();
+			
+			if (isset($author->forename))
+			{
+				$name_parts[] = $author->forename;
+			}
+
+			if (isset($author->surname))
+			{
+				$name_parts[] = $author->surname;
+			}
+			
+			if (isset($author->literal) && (count($name_parts) == 0))
+			{
+				$name_parts[] = $author->literal;
+			}
+		
+			$openurl .= '&rft.au=' . urlencode(join(' ', $name_parts));
 		}	
 	}
 	$openurl .= '&rft.atitle=' . urlencode($reference->title);

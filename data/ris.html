@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<pre id="afd"></pre>
+<pre id="data"></pre>
+
+<script>
+
+var afd = `{
+  "_id": "ce5c4dd0-ca7d-4d39-8c1e-1bc3528ffd81",
+  "_rev": "1-3ea9fd56fc895c99c349a457b5776e04",
+  "authors": [
+    {
+      "surname": "Reid",
+      "forename": "C A M"
+    }
+  ],
+  "type": "Journal Article",
+  "title": "Two new genera of Cryptocephalinae (Coleoptera: Chrysomelidae) from Australasia",
+  "year": "1998",
+  "id": "ce5c4dd0-ca7d-4d39-8c1e-1bc3528ffd81",
+  "publication_outlet": "Journal of Natural History",
+  "volume": "32",
+  "pages": "1169-1179",
+  "identifiers": {
+    "issn": "0022-2933",
+    "doi": "10.1080/00222939800770581"
+  },
+  "urls": [
+    "http://dx.doi.org/10.1080/00222939800770581"
+  ],
+  "docType": "publication"
+}`;
+
+var doc = JSON.parse(afd);
+
+document.getElementById("afd").innerHTML = JSON.stringify(doc, null, 2);
+
+
+
+if (doc.docType == 'publication') {
+
+	var ris_text = '';
+	
+	var ris = {};
+	
+	var keys = ['TY', 'TI', 'AU', 'JO', 'SN', 'VL', 'IS', 'SP', 'EP', 'Y1', 'DO', 'UR', 'L1', 'ER'];
+	
+	for (var i in keys) {
+		ris[keys[i]] = [];
+	}
+	
+	ris.TY[0] = 'GEN';
+
+	var csl = {};
+	csl['alternative-id'] = [];
+	csl['alternative-id'].push(doc._id);
+	csl['alternative-id'].push('UUID:' + doc._id.replace(/-/g, ''));
+
+	for (var i in doc) {
+		switch (i) {
+	
+			case 'type':
+				switch (doc[i]) {
+					case 'Journal Article':
+						ris.TY[0] = 'JOUR';
+						break;
+					default:
+						break;
+				}
+				break;
+			
+			case 'authors':
+				for (var j in doc.authors) {
+					var author = '';
+					if (doc.authors[j].surname) {
+						author = doc.authors[j].forename + ' ' + doc.authors[j].surname;
+						ris.AU.push(author);
+					}
+				}
+				break;
+
+			case 'issue':
+				ris['IS'].push(doc[i]);
+				break;
+				
+			case 'title':
+				ris['TI'].push(doc[i]);
+				break;
+				
+			case 'volume':
+				ris['VL'].push(doc[i]);
+				break;
+
+			case 'publication_outlet':
+				ris['JO'].push(doc[i]);
+				break;
+			
+			case 'pages':
+			    var m = doc[i].match(/(\d+)-(\d+)/);
+			    if (m) {
+			    	ris['SP'].push(m[1]);
+			    	ris['EP'].push(m[2]);
+			    } else {
+			    	ris['SP'].push(doc[i]);
+			    }
+				break;
+
+			case 'year':
+				ris['Y1'].push(doc[i]);
+				break;
+			
+			case 'identifiers':		
+				for (var j in doc.identifiers) {
+					switch (j) {
+				
+						/*
+						case 'bhl':
+							csl.BHL = doc.identifiers[j];
+							csl['alternative-id'].push('BHL:' + doc.identifiers[j]);
+							break;
+
+						case 'biostor':
+							csl.BIOSTOR = doc.identifiers[j];
+							csl['alternative-id'].push('BIOSTOR:' + doc.identifiers[j]);
+							break;
+						*/
+
+						case 'doi':
+							ris['DO'].push(doc.identifiers[j]);
+							break;
+													
+						case 'issn':
+							ris['SN'].push(doc.identifiers[j]);
+							break;
+						
+						default:
+							break;
+					}			
+				}
+				break;
+			
+			case 'urls':
+				for (var j in doc.urls) {
+					ris['UR'].push(doc.urls[j]);
+				}
+				break;
+			
+			default:
+				break;
+		}
+
+
+	}
+	
+	ris['ER'].push('');
+	
+	for (var i in ris) {
+		for (var j in ris[i]) {
+			ris_text += i + '  - ' + ris[i][j] + "\n";
+		}
+	}
+		
+	
+}
+
+
+
+
+//document.getElementById("data").innerHTML = JSON.stringify(ris_text, null, 2);
+document.getElementById("data").innerHTML = ris_text;
+
+
+
+
+</script>
+
+</body>
+</html>

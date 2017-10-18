@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<pre id="afd"></pre>
+<pre id="data"></pre>
+
+<script>
+
+var afd = `{
+  "_id": "ce5c4dd0-ca7d-4d39-8c1e-1bc3528ffd81",
+  "_rev": "1-3ea9fd56fc895c99c349a457b5776e04",
+  "authors": [
+    {
+      "surname": "Reid",
+      "forename": "C A M"
+    }
+  ],
+  "type": "Journal Article",
+  "title": "Two new genera of Cryptocephalinae (Coleoptera: Chrysomelidae) from Australasia",
+  "year": "1998",
+  "id": "ce5c4dd0-ca7d-4d39-8c1e-1bc3528ffd81",
+  "publication_outlet": "Journal of Natural History",
+  "volume": "32",
+  "pages": "1169-1179",
+  "identifiers": {
+    "issn": "0022-2933",
+    "doi": "10.1080/00222939800770581"
+  },
+  "urls": [
+    "http://dx.doi.org/10.1080/00222939800770581"
+  ],
+  "docType": "publication"
+}`;
+
+var doc = JSON.parse(afd);
+
+document.getElementById("afd").innerHTML = JSON.stringify(doc, null, 2);
+
+
+
+if (doc.docType == 'publication') {
+
+	var csl = {};
+	csl['alternative-id'] = [];
+	csl['alternative-id'].push(doc._id);
+	csl['alternative-id'].push('UUID:' + doc._id.replace(/-/g, ''));
+
+	for (var i in doc) {
+		switch (i) {
+	
+			case 'type':
+				switch (doc[i]) {
+					case 'Journal Article':
+						csl.type = 'article-journal';
+						break;
+					default:
+						break;
+				}
+				break;
+			
+			case 'authors':
+				csl.author = [];
+				for (var j in doc.authors) {
+					var author = {};
+					if (doc.authors[j].surname) {
+						author.family = doc.authors[j].surname;
+						author.given = doc.authors[j].forename;
+						csl.author.push(author);
+					}
+				}
+				if (csl.author.length == 0) {
+					delete csl.author;
+				}
+				break;
+
+			case 'issue':
+			case 'title':
+			case 'volume':
+				csl[i] = doc[i];
+				break;
+
+			case 'publication_outlet':
+				csl['container-title'] = doc[i];
+				break;
+			
+			case 'pages':
+				csl.page = doc[i];
+				break;
+
+			case 'year':
+				csl.issued = {};
+				csl.issued['date-parts'] = [];
+				csl.issued['date-parts'][0] = [parseInt(doc[i])];
+				break;
+			
+			case 'identifiers':		
+				for (var j in doc.identifiers) {
+					switch (j) {
+				
+						case 'bhl':
+							csl.BHL = doc.identifiers[j];
+							csl['alternative-id'].push('BHL:' + doc.identifiers[j]);
+							break;
+
+						case 'biostor':
+							csl.BIOSTOR = doc.identifiers[j];
+							csl['alternative-id'].push('BIOSTOR:' + doc.identifiers[j]);
+							break;
+
+						case 'doi':
+							csl.DOI = doc.identifiers[j];
+							csl.DOI = csl.DOI.toLowerCase();
+							csl['alternative-id'].push('DOI:' + csl.DOI);
+							break;
+													
+						case 'issn':
+							csl.ISSN = [];
+							csl.ISSN.push(doc.identifiers[j]);
+							break;
+						
+						default:
+							break;
+					}			
+				}
+				break;
+			
+			case 'urls':
+				csl.URL = [];		
+				for (var j in doc.urls) {
+					csl.URL.push(doc.urls[j]);
+					csl['alternative-id'].push(doc.urls[j]);
+				}
+				break;
+			
+			default:
+				break;
+		}
+
+
+	}
+}
+
+document.getElementById("data").innerHTML = JSON.stringify(csl, null, 2);
+
+
+
+
+</script>
+
+</body>
+</html>

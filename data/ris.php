@@ -298,5 +298,70 @@ function import_ris($ris, $callback_func = '')
 	
 }
 
+//--------------------------------------------------------------------------------------------------
+// Use this function to handle very large RIS files
+function import_ris_file($filename, $callback_func = '')
+{
+	global $debug;
+	$debug = false;
+	
+	$file_handle = fopen($filename, "r");
+			
+	$state = 1;	
+	
+	while (!feof($file_handle)) 
+	{
+		$r = fgets($file_handle);
+		$parts = explode ("  - ", $r);
+		
+		//print_r($parts);
+		
+		$key = '';
+		if (isset($parts[1]))
+		{
+			$key = trim($parts[0]);
+			$value = trim($parts[1]); // clean up any leading and trailing spaces
+		}
+				
+		if (isset($key) && ($key == 'TY'))
+		{
+			$state = 1;
+			$obj = new stdClass();
+			$obj->authors = array();
+			
+			if ('JOUR' == $value)
+			{
+				$obj->genre = 'article';
+			}
+		}
+		if (isset($key) && ($key == 'ER'))
+		{
+			$state = 0;
+						
+			// Cleaning...						
+			if ($debug)
+			{
+				print_r($obj);
+			}	
+			
+			if ($callback_func != '')
+			{
+				$callback_func($obj);
+			}
+			
+		}
+		
+		if ($state == 1)
+		{
+			if (isset($value))
+			{
+				process_ris_key($key, $value, $obj);
+			}
+		}
+	}
+	
+	
+}
+
 
 ?>

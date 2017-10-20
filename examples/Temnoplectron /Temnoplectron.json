@@ -1,0 +1,860 @@
+{
+	"doi": "10.1016/j.ympev.2003.09.010",
+	"pii": "S1055-7903(03)00353-1",
+	"atitle": "Molecular phylogeny and biogeography of the dung beetle genus Temnoplectron Westwood (Scarabaeidae: Scarabaeinae) from Australia’s wet tropics",
+	"authors": [{
+			"forename": "K.L.",
+			"lastname": "Bell",
+			"email": "kbell@zen.uq.edu.au"
+		},
+		{
+			"forename": "D.K.",
+			"lastname": "Yeates"
+		},
+		{
+			"forename": "C.",
+			"lastname": "Moritz"
+		},
+		{
+			"forename": "G.B.",
+			"lastname": "Monteith"
+		}
+	],
+	"abstract": "The landscape of the Australian Wet Tropics can be described as “islands” of montane rainforest surrounded by warmer or more xeric habitats. Historical glaciation cycles have caused expansion and contraction of these rainforest “islands” leading to consistent patterns of genetic divergence within species of vertebrates. To explore whether this dynamic history has promoted speciation in endemic and diverse groups of insects, we used a combination of mtDNA sequencing and morphological characters to estimate relationships and the tempo of divergence among Australian representatives of the dung beetle genus Temnoplectron. This phylogenetic hypothesis shares a number of well-supported clades with a previously published phylogenetic hypothesis based on morphological data, though statistical support for several nodes is weak. Sister species relationships well-supported in both tree topologies, and a tree obtained by combining the two data sets, suggest that speciation has mostly been allopatric. We identify a number of speciation barriers, which coincide with phylogeographic breaks found in vertebrate species. Large sequence divergences between species emphasize that speciation events are ancient (pre-Pleistocene). The flightless, rainforest species appear to have speciated rapidly, but also in the distant past.",
+	"keywords": ["Biogeography", "Speciation", "Molecular phylogeny", "Tropical rainforest", "Dung beetle"],
+
+	"figures": [{
+			"id": "FIG1",
+			"label": "Fig. 1",
+			"caption": "Distribution data for Temnoplectron species. (A) Listing of subregions in which each species is present. (B) Map showing subregions within the Wet Tropics. After Williams et al. (1996). CL, Cooktown Lowlands; FU, Mount Finnigan Uplands; TU, Thornton Uplands; WU, Windsor Uplands; CU, Carbine Uplands; BM, Black Mountain Corridor; LU, Lamb Uplands; AU, Atherton Uplands; BK, Bellenden-Ker/Bartle-Frere; MT, Malbon-Thompson Uplands; KU, Kirrama Uplands; LE, Lee Uplands; HI, Hinchinbrook Island; SU, Spec Uplands; HU, Halifax Uplands; EU, Elliot Uplands; PI, Palm Islands (C) map showing subregions outside the Wet Tropics. NG, New Guinea; NWA, North Western Australia; NT, Northern Territory; CY, Cape York; MEQ, Mid-East Queensland; SEQ, South-East Queensland."
+		},
+		{
+			"id": "FIG2",
+			"label": "Fig. 2",
+			"caption": "Maximum likelihood tree based on 437bp of COI, with bootstrap values shown above branches and Bayesian support values shown below branches."
+		},
+		{
+			"id": "FIG3",
+			"label": "Fig. 3",
+			"caption": "(A) Histogram of total interspecific sequence divergences for 994bp of COI based on a maximum likelihood model. (B) Histogram of net interspecific sequence divergences (ie. corrected for variation within species) for 437bp of COI based on a maximum likelihood model."
+		},
+		{
+			"id": "FIG4",
+			"label": "Fig. 4",
+			"caption": "(A) Maximum likelihood tree based on 994bp of COI with bootstrap values shown above branches and Bayesian support values shown below branches. (B) Consensus of most parsimonious trees based on morphological data from Reid and Storey (2000)."
+		},
+		{
+			"id": "FIG5",
+			"label": "Fig. 5",
+			"caption": "Consensus of two most parsimonious trees of combined molecular and morphological data with bootstrap values shown above branches, and partitioned Bremer support values (molecular/morphological) shown below branches."
+		},
+		{
+			"id": "FIG6",
+			"label": "Fig. 6",
+			"caption": "Map of the Wet Tropics World Heritage Area, showing distribution of T. subvolitans (black) and T. aeneopiceum (light grey), and overlap between species (dark grey)."
+		},
+		{
+			"id": "FIG7",
+			"label": "Fig. 7",
+			"caption": "Map of the Wet Tropics World Heritage Area, showing distribution of T. politulum (grey) and T. reyi (black)."
+		},
+		{
+			"id": "FIG8",
+			"label": "Fig. 8",
+			"caption": "Map of the Wet Tropics World Heritage Area, showing distributions of wingless rainforest species."
+		}
+	],
+
+	"tables": [{
+			"label": "Table 1",
+			"caption": "Listing of all specimens for which COI sequence was obtained, and information on their collection",
+			"rows": [
+				["Species", "Collection locality", "Altitude", "Collector(s)", "Date", "Specimen code no."],
+				["T. aeneopiceum Matthews", "Tully R. causeway (17°54′S 145°39′E)", "750m", "D.J. Cook", "2 Dec 1998", "2002-1"],
+				["", "Kjellberg Rd (17°32′S 145°35′E)", "920m", "G.B. Monteith", "6–9 Feb 1999", "2154-1"],
+				["", "Millaa Millaa Falls (17°29′48.7′′S 145°36′34.0′′E)", "825m", "K.L. Bell", "8–10 Dec 2000", "AT-1"],
+				["", "Tully Falls Rd (17°43′49′′S 145°32′18′′E)", "", "K.L. Bell", "9–10 Jul 2000", "WH-1"],
+				["", "Birthday Creek Falls (18°58′42.1′′S 146°09′34.8′′E)", "880m", "K.L. Bell", "1–2 Dec 2000", "PR-1"],
+				["T. bornemisszai Matthews", "Bartle Frere, W. base (17°23′S 145°46′E)", "750m", "G.B. Monteith & D.J. Cook", "28–30 Nov 1998", "1962-1"],
+				["", "Tully R. causeway (17°54′S 145°39′E)", "750m", "D.J. Cook", "3–5 Dec 1998", "2015-1"],
+				["", "Mt Hugh Nelson, S. base (17°31′S 145°33′E)", "1080m", "G.B. Monteith & D.J. Cook", "7–9 Feb 1999", "2167-1"],
+				["T. boucomonti Paulian", "Station Creek (16°37′S 145°14′E)", "350m", "G.B. Monteith", "23–25 Nov 1998", "1938-1"],
+				["", "Gregory NP (16°07′S 130°25′E)", "", "P. Bouchard", "Jun 2001", "NT-1"],
+				["T. cooki Reid and Storey", "Mt Spurgeon (16°27′S 145°11′E)", "", "G.B. Monteith, D.J. Cook & C. Burwell", "19–23 Nov 1997", "1632-1"],
+				["", "Mt Haig (17°07′S 145°33′E)", "1070m", "G.B. Monteith & D.J. Cook", "6–10 Feb 1998", "1798-1"],
+				["", "", "", "", "", "1798-2"],
+				["T. disruptum Matthews", "Iron Range (12°46′S 143°17′E)", "", "J. Skevington", "20–24 Jul 1999", "UQ-1"],
+				["", "", "", "", "", "UQ-2"],
+				["T. finnigani Reid and Storey", "Mt Finnigan (15°49′S 145°17′E)", "1100m", "G.B. Monteith", "20–21 Nov 1998", "1929-1"],
+				["", "", "", "", "", "1929-2"],
+				["", "", "", "", "", "1929-3"],
+				["T. involucre Matthews", "Birthday Creek Falls (18°58′42.1′′S 146°09′34.8′′E)", "880m", "K.L. Bell", "1–2 Dec 2000", "PR-1"],
+				["", "Paluma Dam Rd (19°00.716′S 146°10.461′E)", "660m", "K.L. Bell", "2–5 Dec 2000", "PR-2"],
+				["", "", "", "", "", "PR-4"],
+				["T. laeve Laporte", "Cameron Ck, via Koumala (21°35′S 149°14′E)", "", "G.B. Monteith", "1–2 Oct 1999", "7799-1"],
+				["", "", "", "", "", "7799-2"],
+				["", "Birthday Creek Falls (18°58′42.1′′S 146°09′34.8′′E)", "880m", "K.L. Bell", "1–2 Dec 2000", "PR-1"],
+				["", "Mt Spurgeon (16°27′S 145°11′E)", "", "G.B. Monteith, D.J. Cook & C. Burwell", "19–23 Nov 1997", "T58245 (QM)"],
+				["", "", "", "", "", "T58246 (QM)"],
+				["T. lewisense Reid and Storey", "Mt Lewis, site 3 (16°33′04.2′′S 145°16′45.6′′E)", "980m", "K.L. Bell", "13–14 Dec 2000", "CT-1"],
+				["", "Mt Lewis barracks (16°35′40′′S 145°16′27′′E)", "990m", "", "19 Apr 1997", "QM-1"],
+				["T. major Paulian", "Taroom (25°36′S 149°46′E)", "200m", "D.J. Cook & G.B. Monteith", "15–16 Dec 2000", "9853-1"],
+				["", "Ravenshoe, 2km SW (17°37′S 145°25′E)", "880m", "G.B. Monteith", "6–8 Feb 1999", "T72896 (QM)"],
+				["T. monteithi Reid and Storey", "Cape Tribulation (16°05′S 145°26′E)", "", "G.B. Monteith", "17 Nov 1998", "1913-1"],
+				["", "", "", "", "", "1913-2"],
+				["T. politulum Macleay", "Bartle Frere, W. base (17°23′S 145°46′E)", "750m", "G.B. Monteith", "28 Nov 1998", "1970-1"],
+				["", "Vine Creek (17°41′S 145°32′E)", "1060m", "G.B. Monteith", "4–6 Feb 1999", "2094-1"],
+				["", "Wallaman Falls (18°35′26.6′′S 145°48′16.3′′E)", "300m", "K.L. Bell", "2 Dec 2000", "SR-1"],
+				["T. reyi Paulian", "Cape Tribulation (16°05′S 145°26′E)", "", "G.B. Monteith", "17 Nov 1998", "1913-1"],
+				["", "Mt Lewis, site 1 (16°35′11.9′′S 145°17′19.9′′E)", "860m", "K.L. Bell", "13–14 Dec 2000", "CT-2"],
+				["", "2km ENE Kuranda (16°48′S 145°38′E)", "360m", "C. Reid", "19–21 Apr 1999", "ANIC-2"],
+				["", "Cedar Pocket (16°56′S 145°36′E)", "440m", "I. Reid & C. Reid", "17–19 Apr 1999", "ANIC-3"],
+				["T. rotundum Westwood", "Andoom, nr Weipa (12°32′S 141°50′E)", "", "G.B. Monteith", "5–8 Feb 1975", "T50617 (QM)"],
+				["", "", "", "", "", "T50618 (QM)"],
+				["T. subvolitans Matthews", "Bartle Frere, W. base (17°23′S 145°46′E)", "750m", "G.B. Monteith", "28 Nov 1998", "1970-1"],
+				["", "Mt Murray Prior (16°56′S 145°51′E)", "", "G.B. Monteith", "7–8 Dec 1998", "2035-1"],
+				["", "Millaa Millaa Falls (17°29′48.7′′S 145°36′34.0′′E)", "825m", "K.L. Bell", "8–10 Dec 2000", "AT-1"],
+				["", "Mt Lewis (16°35′14′′S 145°18′07′′E)", "", "P. Bouchard & A. McDowell", "11 Jul 2000", "CT-2"],
+				["Diorygopyx tibialis Macleay", "Sunday Ck barracks, 6km NE (26°40′S 152°35′E)", "728m", "K.L. Bell & G.B. Monteith", "17–18 Mar 2001", "SQ-1"],
+				["Lepanus monteithi Matthews", "Iron Range (12°46′S 143°17′E)", "", "J. Skevington", "20–24 Jul 1999", "UQ-1"],
+				["", "", "", "", "", "UQ-2"],
+				["Lepanus ustulatus Lansberge", "Bulburin barracks (24°32′S 151°28′E)", "580m", "G.B. Monteith & D.J. Cook", "7–9 Nov 1999", "7819-1"],
+				["", "", "", "", "", "7819-2"],
+				["Monoplistes occidentalis Macleay;", "Macleay Nipping Gully (25°20′S 151°26′E)", "", "Monteith & Gough", "18 Dec 1998–25 Jan 1999", "7579-1"],
+				["", "", "", "", "", "7579-2"],
+				["", "", "", "", "", "7579-3"],
+				["", "", "", "", "", "7579-4"]
+			]
+		},
+		{
+			"label": "Table 2",
+			"caption": "Primers used for sequencing of COI",
+			"rows": [
+				["Designation", "Alias", "Sequence", "Reference"],
+				["C1-J-1706", "CO1-FA", "CCA ATT TTA ATT GGR GGR TTT GG", "Custom primer"],
+				["C1-J-1718", "Geoff", "GGA GGA TTT GGA AAT TGA TTA GTT CC", "(Simon et al., 1994)"],
+				["C1-J-1751", "Ron", "GGA TCA CCT GAT ATA GCA TTC CC", "(Simon et al., 1994)"],
+				["C1-J-1752", "CO1-F5-D", "GAG CCC CTG ATA TAG CCT TTC C", "Custom primer"],
+				["C1-J-1754", "Johnny", "GCT CCT GAT ATA GCA TTC CCA CG", "Custom primer"],
+				["C1-J-1844", "CO1-150-F", "GTT GAA AGA GGA GCT GGA ACA GG", "Custom primer"],
+				["C1-N-1841", "CO1-150-R", "TGA TAA AGG RGG ATA AAC TGT TC", "Custom primer"],
+				["C1-N-1970", "MiniCO1", "TAT TCC TGT TGA TCG TAT ATT RA", "Custom primer"],
+				["C1-J-1994", "CO1-300-F", "CAA TAT ACG ATC AAC AGG AAT AAC", "Custom primer"],
+				["C1-J-2166", "CO1-F3", "GGA GAC CCA ATT CTT TAY CAA C", "Custom primer"],
+				["C1-J-2166", "C01-F3-D", "GGA AAC CCG ATT TTA TAT CAA C", "Custom primer"],
+				["C1-J-2183", "Jerry", "CAA CAT TTA TTT TGA TTT TTT GG", "(Simon et al., 1994)"],
+				["C1-N-2191", "Nancy", "CCC GGT AAA ATT AAA ATA TAA ACT TC", "(Simon et al., 1994)"],
+				["C1-J-2195", "CO1-RLR", "TTG ATT TTT TGG TCA TCC AGA AGT", "(Simon et al., 1994)"],
+				["C1-N-2329", "K525", "ACT GTA AAT ATA TGA TGA GCT CA", "(Simon et al., 1994)"],
+				["C1-N-2454", "CO1-800-R", "GGG AAT AAT TTA ATT GAG ATC C", "Custom primer"],
+				["C1-J-2474", "CO1-800-F", "CTC TTC ATG GAT CTC AAT TAA ATT AYT C", "Custom primer"],
+				["C1-N-2652", "CO1-R3", "TCC TGT AAA TAA TGG AAA TCA ATG", "Custom primer"],
+				["C1-N-2751", "Jeanette", "CCA CTT AAT CCT AAA AAA TGY TG", "Custom primer"],
+				["C1-N-2751", "Pauline", "CCA CTT AAA CCA AAR AAA TGY TG", "Custom primer"],
+				["L2-N-3014", "Pat", "TCC AAT GCA CTA ATC TGC CAT ATT A", "(Simon et al., 1994)"]
+			]
+		}
+	],
+	"urls": [],
+
+	"bibliography": [{
+			"genre": "article",
+			"date": "1998",
+			"volume": "265",
+			"title": "Proc. R. Soc. Lond. B",
+			"spage": "1707",
+			"epage": "1719",
+			"authors": [{
+					"forename": "J.C.",
+					"surname": "Avise"
+				},
+				{
+					"forename": "D.",
+					"surname": "Walker"
+				},
+				{
+					"forename": "G.C.",
+					"surname": "Johns"
+				}
+			],
+			"atitle": "Speciation durations and Pleistocene effects on vertebrate phylogeography",
+			"id": "BIB1"
+
+		},
+		{
+			"genre": "article",
+			"date": "1995",
+			"volume": "38",
+			"title": "Mem. Qld. Mus.",
+			"spage": "315",
+			"epage": "381",
+			"authors": [{
+				"forename": "M.",
+				"surname": "Baehr"
+			}],
+			"atitle": "Revision of Philipis (Coleoptera: Carabidae: Bembidiinae), a genus of arboreal tachyine beetles from the rainforests of Eastern Australia: taxonomy, phylogeny and biogeography",
+			"id": "BIB2"
+
+		},
+		{
+			"genre": "article",
+			"date": "1997",
+			"volume": "46",
+			"title": "Syst. Biol.",
+			"spage": "654",
+			"epage": "673",
+			"authors": [{
+					"forename": "R.H.",
+					"surname": "Baker"
+				},
+				{
+					"forename": "R.",
+					"surname": "DeSalle"
+				}
+			],
+			"atitle": "Multiple sources of character information and the phylogeny of Hawaiian Drosophilids",
+			"id": "BIB3"
+
+		},
+		{
+			"description": "Bouchard, P., Brooks, D.R., Yeates, D.K., in press. J. Biogeogr. Mosaic Macroevolution in Australian Wet Tropics Arthropods: Community Assemblage by Taxon Pulses",
+			"id": "BIB4"
+
+		},
+		{
+			"genre": "article",
+			"date": "2001",
+			"volume": "28",
+			"title": "J. Biogeogr.",
+			"spage": "345",
+			"epage": "358",
+			"authors": [{
+					"forename": "D.R.",
+					"surname": "Brooks"
+				},
+				{
+					"forename": "M.G.P.",
+					"surname": "van Veller"
+				},
+				{
+					"forename": "D.A.",
+					"surname": "McLennan"
+				}
+			],
+			"atitle": "How to do BPA, really",
+			"id": "BIB5"
+
+		},
+		{
+			"spage": "57",
+			"epage": "89",
+			"genre": "bookitem",
+			"editors": [{
+					"forename": "A.A.",
+					"surname": "Myers"
+				},
+				{
+					"forename": "P.S.",
+					"surname": "Giller"
+				}
+			],
+			"title": "Analytical Biogeography",
+			"date": "1988",
+			"publisher": "Chapman & Hall",
+			"publoc": "London",
+			"authors": [{
+				"forename": "J.H.",
+				"surname": "Brown"
+			}],
+			"atitle": "Species Diversity",
+			"id": "BIB6"
+
+		},
+		{
+			"genre": "article",
+			"date": "1994",
+			"volume": "21",
+			"title": "J. Biogeogr.",
+			"spage": "5",
+			"epage": "17",
+			"authors": [{
+				"forename": "M.B.",
+				"surname": "Bush"
+			}],
+			"atitle": "Amazonian speciation: a necessarily complex model",
+			"id": "BIB7"
+
+		},
+		{
+			"genre": "article",
+			"date": "1987",
+			"volume": "6",
+			"title": "Quat. Sci. Rev.",
+			"spage": "93",
+			"epage": "114",
+			"authors": [{
+				"forename": "P.A.",
+				"surname": "Colinvaux"
+			}],
+			"atitle": "Amazon diversity in the light of the paleoecological record",
+			"id": "BIB8"
+
+		},
+		{
+			"genre": "article",
+			"date": "1998",
+			"volume": "281",
+			"title": "Science",
+			"spage": "555",
+			"epage": "559",
+			"authors": [{
+				"forename": "B.D.",
+				"surname": "Farrell"
+			}],
+			"atitle": "Inordinate fondness explained: why are there so many beetles?",
+			"id": "BIB9"
+
+		},
+		{
+			"genre": "article",
+			"date": "1960",
+			"volume": "14",
+			"title": "Evolution",
+			"spage": "64",
+			"epage": "81",
+			"authors": [{
+				"forename": "A.G.",
+				"surname": "Fischer"
+			}],
+			"atitle": "Latitudinal variation in organic diversity",
+			"id": "BIB10"
+
+		},
+		{
+			"genre": "article",
+			"date": "1999",
+			"volume": "87",
+			"title": "J. Ecol.",
+			"spage": "193",
+			"epage": "210",
+			"authors": [{
+				"forename": "T.J.",
+				"surname": "Givnish"
+			}],
+			"atitle": "On the causes of gradients in tropical tree diversity",
+			"id": "BIB11"
+
+		},
+		{
+			"genre": "article",
+			"date": "1996",
+			"volume": "12",
+			"title": "J. Trop. Ecol.",
+			"spage": "449",
+			"epage": "460",
+			"authors": [{
+				"forename": "C.J.",
+				"surname": "Hill"
+			}],
+			"atitle": "Habitat specificity and food preferences of an assemblage of tropical Australian dung beetles",
+			"id": "BIB12"
+
+		},
+		{
+			"genre": "article",
+			"date": "2002",
+			"volume": "99",
+			"title": "Proc. Natl. Acad. Sci. USA",
+			"spage": "6112",
+			"epage": "6117",
+			"authors": [{
+					"forename": "A.",
+					"surname": "Hugall"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				},
+				{
+					"forename": "A.",
+					"surname": "Moussalli"
+				},
+				{
+					"forename": "J.",
+					"surname": "Stanisic"
+				}
+			],
+			"atitle": "Reconciling paleodistribution models and comparative phylogeography in the Wet Tropics rainforest land snail Gnarosophia bellendenkerensis (Brazier 1875)",
+			"id": "BIB13"
+
+		},
+		{
+			"genre": "article",
+			"date": "1993",
+			"volume": "2",
+			"title": "Mol. Ecol.",
+			"spage": "161",
+			"epage": "170",
+			"authors": [{
+					"forename": "L.",
+					"surname": "Joseph"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				}
+			],
+			"atitle": "Phylogeny and historical ecology of eastern Australian scrubwrens Sericornis spp.: evidence from mitochondrial DNA",
+			"id": "BIB14"
+
+		},
+		{
+			"genre": "article",
+			"date": "1995",
+			"volume": "260",
+			"title": "Proc. R. Soc. Lond. B",
+			"spage": "177",
+			"epage": "182",
+			"authors": [{
+					"forename": "L.",
+					"surname": "Joseph"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				},
+				{
+					"forename": "A.",
+					"surname": "Hugall"
+				}
+			],
+			"atitle": "Molecular support for vicariance as a source of diversity in rainforest",
+			"id": "BIB15"
+
+		},
+		{
+			"genre": "article",
+			"date": "1994",
+			"volume": "109",
+			"title": "Palaeogeogr. Palaeoclimatol. Palaeoecol.",
+			"spage": "399",
+			"epage": "412",
+			"authors": [{
+				"forename": "A.P.",
+				"surname": "Kershaw"
+			}],
+			"atitle": "Pleistocene vegetation of the humid tropics of northeastern Queensland, Australia",
+			"id": "BIB16"
+
+		},
+		{
+			"spage": "1695",
+			"epage": "1742",
+			"genre": "bookitem",
+			"editors": [{
+				"forename": "A.",
+				"surname": "Keast"
+			}],
+			"title": "Ecological Biogeography of Australia",
+			"date": "1981",
+			"publisher": "W. Junk",
+			"publoc": "The Hague",
+			"authors": [{
+					"forename": "J.",
+					"surname": "Kikkawa"
+				},
+				{
+					"forename": "G.B.",
+					"surname": "Monteith"
+				},
+				{
+					"forename": "G.",
+					"surname": "Ingram"
+				}
+			],
+			"atitle": "Cape York Peninsula: major region of faunal interchange",
+			"id": "BIB17"
+
+		},
+		{
+			"genre": "article",
+			"date": "1986",
+			"volume": "79",
+			"title": "Ann. Ent. Soc. Am.",
+			"spage": "424",
+			"epage": "433",
+			"authors": [{
+				"forename": "J.K.",
+				"surname": "Liebherr"
+			}],
+			"atitle": "Comparison of genetic variation in two carabid beetles (Coleoptera) of differing vagility",
+			"id": "BIB18"
+
+		},
+		{
+			"genre": "article",
+			"date": "1972",
+			"volume": "9",
+			"title": "Aust. J. Zool., Suppl. Ser.",
+			"spage": "3",
+			"epage": "330",
+			"authors": [{
+				"forename": "E.G.",
+				"surname": "Matthews"
+			}],
+			"atitle": "A revision of the scarabaeine dung beetles of Australia I. Tribe Onthophagini",
+			"id": "BIB19"
+
+		},
+		{
+			"genre": "article",
+			"date": "1974",
+			"volume": "24",
+			"title": "Aust. J. Zool., Suppl. Ser.",
+			"spage": "1",
+			"epage": "211",
+			"authors": [{
+				"forename": "E.G.",
+				"surname": "Matthews"
+			}],
+			"atitle": "A revision of the scarabaeine dung beetles of Australia. II. Tribe Scarabaeini",
+			"id": "BIB20"
+
+		},
+		{
+			"genre": "article",
+			"date": "1976",
+			"volume": "38",
+			"title": "Aust. J. Zool., Suppl. Ser.",
+			"spage": "1",
+			"epage": "52",
+			"authors": [{
+				"forename": "E.G.",
+				"surname": "Matthews"
+			}],
+			"atitle": "A revision of the scarabaeine dung beetles of Australia III, Tribe Coprini",
+			"id": "BIB21"
+
+		},
+		{
+			"genre": "article",
+			"date": "2001",
+			"volume": "268",
+			"title": "Proc. R. Soc. Lond. B. Bio",
+			"spage": "1875",
+			"epage": "1881",
+			"authors": [{
+					"forename": "C.",
+					"surname": "Moritz"
+				},
+				{
+					"forename": "K.S.",
+					"surname": "Richardson"
+				},
+				{
+					"forename": "S.",
+					"surname": "Ferrier"
+				},
+				{
+					"forename": "G.B.",
+					"surname": "Monteith"
+				},
+				{
+					"forename": "J.",
+					"surname": "Stanisic"
+				},
+				{
+					"forename": "S.E.",
+					"surname": "Williams"
+				},
+				{
+					"forename": "T.",
+					"surname": "Whiffin"
+				}
+			],
+			"atitle": "Biogeographical concordance and efficiency of taxon indicators for establishing conservation priority in a tropical rainforest biota",
+			"id": "BIB22"
+
+		},
+		{
+			"spage": "11",
+			"epage": "39",
+			"genre": "bookitem",
+			"editors": [{
+					"forename": "H.A.",
+					"surname": "Nix"
+				},
+				{
+					"forename": "M.A.",
+					"surname": "Switzer"
+				}
+			],
+			"title": "Rainforest Animals: Atlas of Vertebrates Endemic to Australia’s Wet Tropics",
+			"date": "1991",
+			"publisher": "Australian National Parks and Wildlife Service",
+			"publoc": "Canberra",
+			"authors": [{
+				"forename": "H.",
+				"surname": "Nix"
+			}],
+			"atitle": "Biogeography: pattern and process",
+			"id": "BIB23"
+
+		},
+		{
+			"genre": "article",
+			"date": "2000",
+			"volume": "9",
+			"title": "Mol. Ecol.",
+			"spage": "2041",
+			"epage": "2053",
+			"authors": [{
+					"forename": "L.C.",
+					"surname": "Pope"
+				},
+				{
+					"forename": "A.",
+					"surname": "Estoup"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				}
+			],
+			"atitle": "Phylogeography and population structure of an ecotonal marsupial, Bettongia tropica, determined using mtDNA and microsatellites",
+			"id": "BIB24"
+
+		},
+		{
+			"genre": "article",
+			"date": "2000",
+			"volume": "46",
+			"title": "Mem. Qld. Mus.",
+			"spage": "253",
+			"epage": "297",
+			"authors": [{
+					"forename": "C.A.M.",
+					"surname": "Reid"
+				},
+				{
+					"forename": "R.I.",
+					"surname": "Storey"
+				}
+			],
+			"atitle": "Revision of the Dung Beetle Genus Temnoplectron Westwood (Coleoptera: Scarabaeidae: Scarabaeini)",
+			"id": "BIB25"
+
+		},
+		{
+			"genre": "article",
+			"date": "1994",
+			"volume": "8",
+			"title": "Evol. Ecol.",
+			"spage": "639",
+			"epage": "657",
+			"authors": [{
+				"forename": "D.A.",
+				"surname": "Roff"
+			}],
+			"atitle": "The evolution of flightlessness: is history important?",
+			"id": "BIB26"
+
+		},
+		{
+			"genre": "article",
+			"date": "1999",
+			"volume": "266",
+			"title": "Proc. R. Soc. Lond. B.",
+			"spage": "191",
+			"epage": "196",
+			"authors": [{
+					"forename": "C.",
+					"surname": "Schneider"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				}
+			],
+			"atitle": "Rainforest refugia and evolution in Australia’s Wet Tropics",
+			"id": "BIB27"
+
+		},
+		{
+			"genre": "article",
+			"date": "1998",
+			"volume": "7",
+			"title": "Mol. Ecol.",
+			"spage": "487",
+			"epage": "498",
+			"authors": [{
+					"forename": "C.J.",
+					"surname": "Schneider"
+				},
+				{
+					"forename": "M.",
+					"surname": "Cunningham"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				}
+			],
+			"atitle": "Comparative phylogeography and the history of endemic vertebrates in the Wet Tropics rainforests of Australia",
+			"id": "BIB28"
+
+		},
+		{
+			"genre": "article",
+			"date": "1999",
+			"volume": "96",
+			"title": "Proc. Natl. Acad. Sci. USA",
+			"spage": "13869",
+			"epage": "13873",
+			"authors": [{
+					"forename": "C.J.",
+					"surname": "Schneider"
+				},
+				{
+					"forename": "T.B.",
+					"surname": "Smith"
+				},
+				{
+					"forename": "B.",
+					"surname": "Larison"
+				},
+				{
+					"forename": "C.",
+					"surname": "Moritz"
+				}
+			],
+			"atitle": "A test of alternative models of diversification in tropical rainforests: ecological gradients vs. rainforest refugia",
+			"id": "BIB29"
+
+		},
+		{
+			"genre": "article",
+			"date": "1999",
+			"volume": "16",
+			"title": "Mol. Biol. Evol.",
+			"spage": "1114",
+			"epage": "1116",
+			"authors": [{
+					"forename": "H.",
+					"surname": "Shimodaira"
+				},
+				{
+					"forename": "M.",
+					"surname": "Hasegawa"
+				}
+			],
+			"atitle": "Multiple comparisons of log-likelihoods with applications to phylogenetic inference",
+			"id": "BIB30"
+
+		},
+		{
+			"genre": "article",
+			"date": "1994",
+			"volume": "87",
+			"title": "Ent. Soc. Am.",
+			"spage": "651",
+			"epage": "701",
+			"authors": [{
+					"forename": "C.",
+					"surname": "Simon"
+				},
+				{
+					"forename": "F.",
+					"surname": "Frati"
+				},
+				{
+					"forename": "A.",
+					"surname": "Beckenback"
+				},
+				{
+					"forename": "B.",
+					"surname": "Crespi"
+				},
+				{
+					"forename": "H.",
+					"surname": "Liu"
+				},
+				{
+					"forename": "P.",
+					"surname": "Flook"
+				}
+			],
+			"atitle": "Evolution, weighting and phylogenetic utility of mitochondrial gene sequences and a compilation of conserved polymerase chain reaction primers",
+			"id": "BIB31"
+
+		},
+		{
+			"genre": "article",
+			"date": "2000",
+			"volume": "46",
+			"title": "Mem. Qld. Mus.",
+			"spage": "349",
+			"epage": "358",
+			"authors": [{
+					"forename": "R.I.",
+					"surname": "Storey"
+				},
+				{
+					"forename": "G.B.",
+					"surname": "Monteith"
+				}
+			],
+			"atitle": "Five new species of Aptenocanthon Matthews (Coleoptera: Scarabaeidae: Scarabaienae) from tropical Australia, with notes on distribution",
+			"id": "BIB32"
+
+		},
+		{
+			"genre": "article",
+			"date": "1996",
+			"volume": "2",
+			"title": "Pacific Conserv. Biol.",
+			"spage": "327",
+			"epage": "362",
+			"authors": [{
+					"forename": "S.E.",
+					"surname": "Williams"
+				},
+				{
+					"forename": "R.G.",
+					"surname": "Pearson"
+				},
+				{
+					"forename": "P.J.",
+					"surname": "Walsh"
+				}
+			],
+			"atitle": "Distributions and biodiversity of the terrestrial vertebrates of Australia’s Wet Tropics: a review of current knowledge",
+			"id": "BIB33"
+
+		},
+		{
+			"genre": "article",
+			"date": "2002",
+			"volume": "16",
+			"title": "Invert. Systematics",
+			"spage": "605",
+			"epage": "619",
+			"authors": [{
+					"forename": "D.K.",
+					"surname": "Yeates"
+				},
+				{
+					"forename": "P.",
+					"surname": "Bouchard"
+				},
+				{
+					"forename": "G.B.",
+					"surname": "Monteith"
+				}
+			],
+			"atitle": "Patterns and levels of endemism in the Australian Wet Tropics rainforest: evidence from flightless insects",
+			"id": "BIB34"
+
+		}
+	]
+}

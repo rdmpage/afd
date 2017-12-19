@@ -130,7 +130,7 @@
 	
 
 		// do a query
-		
+		/*
 		var uri = "urn:lsid:biodiversity.org.au:afd.taxon:ecd1ecdb-9c63-4b18-a7ee-d54118255cb2"; // taxon
 		
 		var result = null;
@@ -139,8 +139,10 @@
 			[uri, ["p"], ["o"]]
 			  ]);
 			  
-console.log(JSON.stringify(result, null, 2));			  
+console.log(JSON.stringify(result, null, 2));	
+*/	  
 			  
+			  // all triples in store
 		result = mydb.search([
 			[["s"], ["p"], uri]
 			  ]);
@@ -153,7 +155,13 @@ console.log(JSON.stringify(result, null, 2));
 			[["s"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", ["t"]]
 			  ]);
 			
-		console.log(JSON.stringify(result, null, 2));
+		//console.log(JSON.stringify(result, null, 2));
+		
+		
+		
+		// all taxa
+		
+		// all taxonomic names
     
     	// papers for this set
 		result = mydb.search([
@@ -163,10 +171,15 @@ console.log(JSON.stringify(result, null, 2));
 			  ]);
 			
 		console.log(JSON.stringify(result, null, 2));
+		
+    	var references = [];    
+    	for (var i in result) {    	
+    		references.push(result[i].o);
+    	}
+		console.log(JSON.stringify(references, null, 2));
+		
  
     	// authors for this set
-    	
-    	
 		result = mydb.search([
 			
 			[["s"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://schema.org/ScholarlyArticle"],
@@ -176,7 +189,7 @@ console.log(JSON.stringify(result, null, 2));
 			
 			  ]);
 			
-		console.log(JSON.stringify(result, null, 2));
+		//console.log(JSON.stringify(result, null, 2));
     
     	var authors = {};    
     	for (var i in result) {
@@ -188,9 +201,6 @@ console.log(JSON.stringify(result, null, 2));
 		console.log(JSON.stringify(authors, null, 2));
 
     	// publication dates for this set
-    	
-    	
-    	
 		result = mydb.search([
 			
 			[["s"], "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://schema.org/ScholarlyArticle"],
@@ -198,7 +208,7 @@ console.log(JSON.stringify(result, null, 2));
 			
 			  ]);
 			
-		console.log(JSON.stringify(result, null, 2));
+		//console.log(JSON.stringify(result, null, 2));
     
     	var dates = {};    
     	for (var i in result) {
@@ -209,7 +219,63 @@ console.log(JSON.stringify(result, null, 2));
     	}
 		console.log(JSON.stringify(dates, null, 2));
 
+		// subtree
+		
+		// taxa 
+		var stack = [];
+		stack.push("urn:lsid:biodiversity.org.au:afd.taxon:0e20015e-237f-492b-943f-102caa8acc5b");
+		
+		var list = [];
+		
+		while (stack.length > 0) {
+			var uri = stack.pop();
+					
 
+			result = mydb.search([
+			
+				[["child"],"http://www.w3.org/2000/01/rdf-schema#subClassOf", uri],
+	[["child"], "http://schema.org/name", ["name"]]
+			
+				  ]);
+			
+			console.log(JSON.stringify(result, null, 2));
+			
+			for(var i in result) {
+				list.push(result[i].name);
+				
+				stack.push(result[i].child);
+			
+			}
+		}    
+		//console.log(JSON.stringify(list, null, 2));
+		
+		/*
+		
+		// all names associated with taxa in this subtree
+		stack = [];
+		
+stack.push("urn:lsid:biodiversity.org.au:afd.taxon:0e20015e-237f-492b-943f-102caa8acc5b");
+		
+		list = [];
+		
+		while (stack.length > 0) {
+			var uri = stack.pop();
+			result = mydb.search([			
+				[["child"],"http://www.w3.org/2000/01/rdf-schema#subClassOf", uri],
+	[["child"], "http://rs.tdwg.org/ontology/voc/TaxonConcept#hasName", ["txname"]],
+	[["txname"], "http://schema.org/name", ["name"]]
+				  ]);
+			
+			//console.log(JSON.stringify(result, null, 2));
+			
+			for(var i in result) {
+				list.push(result[i].name);				
+				stack.push(result[i].child);			
+			}
+		}
+		    
+		//console.log(JSON.stringify(list, null, 2));
+		*/
 		
 	</script>
 

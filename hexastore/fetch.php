@@ -1,5 +1,7 @@
 <?php
 
+// Fetch triples for all taxa rooted on agiven node
+
 require_once (dirname(dirname(__FILE__)) . '/lib.php');
 
 

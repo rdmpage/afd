@@ -470,6 +470,8 @@ function display_publication($publication)
 		if ($publication->_id)
 		{
 			echo '<li><a href="http://lsid.tdwg.org/summary/urn:lsid:biodiversity.org.au:afd.publication:' . $publication->_id . '" target="_new">urn:lsid:biodiversity.org.au:afd.publication:' . $publication->_id . '</li>';
+			echo '<li><a href="https://biodiversity.org.au/afd/publication/' . $publication->_id . '" target="_new">https://biodiversity.org.au/afd/publication/' . $publication->_id . '</li>';
+
 		}
 		
 		if (isset($publication->identifiers))
